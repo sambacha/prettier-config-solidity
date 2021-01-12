@@ -1,2 +1,11 @@
+coverage/
 .DS_Store
 node_modules
+build/
+*.tgz
+*.tar.gz
+*.zip
+*.tar
+
+*.log
+
