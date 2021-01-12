@@ -4,7 +4,7 @@ module.exports = {
   arrowParens: "avoid",
   bracketSpacing: true,
   endOfLine: "auto",
-  printWidth: 120,
+  printWidth: 100,
   singleQuote: false,
   tabWidth: 2,
   trailingComma: "all",
@@ -12,7 +12,7 @@ module.exports = {
     {
       files: "*.sol",
       options: {
-        printWidth: 145,
+        printWidth: 120,
         tabWidth: 4,
         useTabs: false,
         singleQuote: false,
