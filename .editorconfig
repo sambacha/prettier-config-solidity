@@ -12,6 +12,12 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+# Solidity
+[*.{sol,solidity}]
+indent_size = 4
+indent_style = space
+
+
 # Bazel: https://bazel.build/
 # https://github.com/bazelbuild/buildtools/blob/master/BUILD.bazel
 [*.{bazel,bzl}]
