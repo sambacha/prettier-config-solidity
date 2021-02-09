@@ -1,5 +1,12 @@
-// Prettier Configuration for Solidity
-// Settings based from Solidity Documentation
+/**
+* @file Prettier configuration for Solidity
+* @version 1.0.2 
+* @license CC0-1.0
+* @note Settings based from Solidity Documentation
+*/
+
+'use strict';
+
 module.exports = {
   arrowParens: "avoid",
   bracketSpacing: true,
@@ -18,7 +25,7 @@ module.exports = {
         singleQuote: false,
         bracketSpacing: false,
         explicitTypes: "always",
-      },
-    },
-  ],
+      }
+    }
+  ]
 };
