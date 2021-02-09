@@ -1,7 +1,7 @@
 {
   "name": "prettier-solidity-config",
-  "version": "1.0.1",
-  "description": "conformant configuration for linting solidity files with prettier",
+  "version": "1.0.2",
+  "description": "conformant configuration for linting solidity files with prettier, based on offical solidity documentation",
   "main": "index.js",
   "directories": {
     "test": "test"
