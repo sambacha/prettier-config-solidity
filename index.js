@@ -1,31 +1,29 @@
 /**
 * @file Prettier configuration for Solidity
-* @version 1.0.2 
-* @license CC0-1.0
-* @note Settings based from Solidity Documentation
+* @version 1.0.3
+* @summary base config adapted from AirBNB to minizmie diff churn
+* @overrides solidity settings from Solidity Documentation
 */
 
 'use strict';
 
 module.exports = {
-  arrowParens: "avoid",
+  arrowParens: "always",
   bracketSpacing: true,
-  endOfLine: "auto",
+  endOfLine: "lf",
   printWidth: 100,
-  singleQuote: false,
+  singleQuote: true,
   tabWidth: 2,
   trailingComma: "all",
-  overrides: [
-    {
+  overrides: [{
       files: "*.sol",
       options: {
-        printWidth: 120,
-        tabWidth: 4,
-        useTabs: false,
-        singleQuote: false,
-        bracketSpacing: false,
-        explicitTypes: "always",
+          printWidth: 120,
+          tabWidth: 4,
+          useTabs: false,
+          singleQuote: false,
+          bracketSpacing: false,
+          explicitTypes: "always",
       }
-    }
-  ]
+  }]
 };
