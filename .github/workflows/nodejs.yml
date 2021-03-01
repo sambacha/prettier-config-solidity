@@ -21,6 +21,10 @@ jobs:
         run: |
           npm install
           npm run test
-          npx semantic-release
         env:
           CI: true
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
