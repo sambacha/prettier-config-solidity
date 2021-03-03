@@ -22,10 +22,11 @@ jobs:
           npm install
           npm run test
         env:
-          CI: true
+          CI: ''
+
       - name: Release
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        
+          CI: false
