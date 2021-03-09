@@ -1,0 +1,7 @@
+tests_config/
+.github/
+test/
+tests/
+__snapshots__
+jest.config.js
+renovate.json
