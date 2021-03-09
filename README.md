@@ -1,5 +1,20 @@
 # [prettier-solidity-config](#)
 
+## Quickstart 
+
+```js
+/**
+* @file prettier.config.js
+* @version v1.0.7
+* @summary Prettier Configuration for Solidity
+*/
+
+'use strict';
+
+const prettierConfig = require('prettier-config-solidity');
+module.exports = prettierConfig;
+```
+
 ## Overview
 
 Prettier configuration for Solidity
