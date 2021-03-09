@@ -1,8 +1,30 @@
-# prettier-solidity-config
+# [prettier-solidity-config](#)
 
 ## Overview
 
 Prettier configuration for Solidity
+
+## Install 
+
+#### Prettier
+
+```bash
+npm i -D prettier prettier-plugin-solidity --save-exact
+```
+
+#### with SolHint
+```bash
+npm install --save-dev solhint solhint-plugin-prettier prettier prettier-plugin-solidity --save-exact
+```
+
+```json
+{
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}
+```
 
 ## Abstract
 
@@ -65,7 +87,7 @@ The following rules are employed, with specific reasonings to their choice (sour
     });
 ```
 
-##### one var
+#### one var
 
 - 13.2 Use one const or let declaration per variable or assignment. eslint: one-var
 
@@ -132,35 +154,6 @@ const hero = {
     )
 ```
 
-
-## Usage
-
-Install both prettier and prettier-plugin-solidity:
-
-```bash
-npm install --save-dev prettier prettier-plugin-solidity prettier-config-solidity --exact
-```
-
-> Note:the `--exact` flag, as prettier versioning does not follow semver and different versions may produce different linting results
-
-Run prettier in your contracts:
-
-```bash
-npx prettier --write 'contracts/**/*.sol'
-```
-
-You can add a script for running prettier on all your contracts:
-
-```json
-"prettier": "prettier --write 'contracts/**/*.sol'"
-```
-
-Or you can use it as part of your linting to check that all your code is prettified:
-
-```json
-"lint": "prettier --list-different 'contracts/**/*.sol'"
-```
-
 ## License
 
-CC0-1.0 or ISC
+SPDX-License-Identifier: Apache-2.0
