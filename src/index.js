@@ -1,6 +1,6 @@
 /**
  * @file Prettier configuration for Solidity
- * @version 1.0.3
+ * @version 1.0.8
  * @summary base config adapted from AirBNB to minizmie diff churn
  * @overrides solidity settings from Solidity Documentation
  */
