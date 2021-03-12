@@ -5,7 +5,7 @@
 ```js
 /**
  * @file prettier.config.js
- * @version v1.0.7
+ * @version v1.2.1
  * @summary Prettier Configuration for Solidity
  */
 
