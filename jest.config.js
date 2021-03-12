@@ -1,4 +1,5 @@
-
+// @file jest.configuration
+// @source pretteir-plugin-solidity
 module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
