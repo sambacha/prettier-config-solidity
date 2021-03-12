@@ -7,11 +7,11 @@ contract B {}
 contract C {}
 
 contract A {
-    function spam() public pure {
-        // ...
-    }
+  function spam() public pure {
+    // ...
+  }
 
-    function ham() public pure {
-        // ...
-    }
+  function ham() public pure {
+    // ...
+  }
 }

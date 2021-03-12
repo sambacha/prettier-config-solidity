@@ -1,39 +1,38 @@
 // source: https://github.com/prettier/prettier/blob/ee2839bacbf6a52d004fa2f0373b732f6f191ccc/tests_config/run_spec.js
-"use strict";
 
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
-const AST_COMPARE = process.env["AST_COMPARE"];
+const { AST_COMPARE } = process.env;
 
-const prettier = require("prettier");
+const prettier = require('prettier');
 
 function run_spec(dirname, options) {
   fs.readdirSync(dirname).forEach((filename) => {
-    const filepath = dirname + "/" + filename;
+    const filepath = `${dirname}/${filename}`;
     if (
-      path.extname(filename) !== ".snap" &&
+      path.extname(filename) !== '.snap' &&
       fs.lstatSync(filepath).isFile() &&
-      filename[0] !== "." &&
-      filename !== "jsfmt.spec.js"
+      filename[0] !== '.' &&
+      filename !== 'jsfmt.spec.js'
     ) {
       let rangeStart = 0;
       let rangeEnd = Infinity;
       let cursorOffset;
       const source = read(filepath)
-        .replace(/\r\n/g, "\n")
-        .replace("<<<PRETTIER_RANGE_START>>>", (match, offset) => {
+        .replace(/\r\n/g, '\n')
+        .replace('<<<PRETTIER_RANGE_START>>>', (match, offset) => {
           rangeStart = offset;
-          return "";
+          return '';
         })
-        .replace("<<<PRETTIER_RANGE_END>>>", (match, offset) => {
+        .replace('<<<PRETTIER_RANGE_END>>>', (match, offset) => {
           rangeEnd = offset;
-          return "";
+          return '';
         });
 
-      const input = source.replace("<|>", (match, offset) => {
+      const input = source.replace('<|>', (match, offset) => {
         cursorOffset = offset;
-        return "";
+        return '';
       });
 
       const mergedOptions = Object.assign(mergeDefaultOptions(options || {}), {
@@ -45,22 +44,19 @@ function run_spec(dirname, options) {
       const output = prettyprint(input, mergedOptions);
       test(filename, () => {
         expect(
-          raw(source + "~".repeat(mergedOptions.printWidth) + "\n" + output)
+          raw(`${source + '~'.repeat(mergedOptions.printWidth)}\n${output}`),
         ).toMatchSnapshot();
       });
 
       if (AST_COMPARE) {
         test(`${filepath} parse`, () => {
-          const compareOptions = Object.assign({}, mergedOptions);
+          const compareOptions = { ...mergedOptions };
           delete compareOptions.cursorOffset;
           const astMassaged = parse(input, compareOptions);
-          let ppastMassaged = undefined;
+          let ppastMassaged;
 
           expect(() => {
-            ppastMassaged = parse(
-              prettyprint(input, compareOptions),
-              compareOptions
-            );
+            ppastMassaged = parse(prettyprint(input, compareOptions), compareOptions);
           }).not.toThrow();
 
           expect(ppastMassaged).toBeDefined();
@@ -82,16 +78,16 @@ function parse(string, opts) {
 function prettyprint(src, options) {
   const result = prettier.formatWithCursor(src, options);
   if (options.cursorOffset >= 0) {
-    result.formatted =
-      result.formatted.slice(0, result.cursorOffset) +
-      "<|>" +
-      result.formatted.slice(result.cursorOffset);
+    result.formatted = `${result.formatted.slice(
+      0,
+      result.cursorOffset,
+    )}<|>${result.formatted.slice(result.cursorOffset)}`;
   }
   return result.formatted;
 }
 
 function read(filename) {
-  return fs.readFileSync(filename, "utf8");
+  return fs.readFileSync(filename, 'utf8');
 }
 
 /**
@@ -100,18 +96,16 @@ function read(filename) {
  * Backticks will still be escaped.
  */
 function raw(string) {
-  if (typeof string !== "string") {
-    throw new Error("Raw snapshots have to be strings.");
+  if (typeof string !== 'string') {
+    throw new Error('Raw snapshots have to be strings.');
   }
-  return { [Symbol.for("raw")]: string };
+  return { [Symbol.for('raw')]: string };
 }
 
 function mergeDefaultOptions(parserConfig) {
-  return Object.assign(
-    {
-      plugins: [path.dirname(__dirname)],
-      printWidth: 80,
-    },
-    parserConfig
-  );
+  return {
+    plugins: [path.dirname(__dirname)],
+    printWidth: 80,
+    ...parserConfig,
+  };
 }

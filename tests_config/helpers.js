@@ -7,7 +7,7 @@ function mergeDefaultOptions(parserConfig) {
   return {
     plugins: [path.dirname(__dirname)],
     printWidth: 80,
-    ...parserConfig
+    ...parserConfig,
   };
 }
 
@@ -16,7 +16,7 @@ function prettyprint(src, options) {
   if (options.cursorOffset >= 0) {
     result.formatted = `${result.formatted.slice(
       0,
-      result.cursorOffset
+      result.cursorOffset,
     )}<|>${result.formatted.slice(result.cursorOffset)}`;
   }
   return result.formatted;
