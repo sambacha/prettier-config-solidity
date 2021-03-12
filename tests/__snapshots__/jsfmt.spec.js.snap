@@ -4,29 +4,34 @@ exports[`Assembly.sol 1`] = `
 contract Assembly {
   function ifAssembly() {
     assembly {
-      if
-        returndatasize    {
-          success := 0
+      if returndatasize {
+        success := 0
       }
     }
   }
 
   function caseAssembly() {
     assembly {
-          switch value
-            case 0 {
-              mstore(0, 0x0000000000000000000000000000000000000000000000000000000000000000)
-            }
-            case 1 {
-                mstore(0, 0x1111111111111111111111111111111111111111111111111111111111111111)
-            }
+      switch value
+        case 0 {
+          mstore(0, 0x0000000000000000000000000000000000000000000000000000000000000000)
         }
+        case 1 {
+          mstore(0, 0x1111111111111111111111111111111111111111111111111111111111111111)
+        }
+    }
   }
 
   function forAssembly() {
     assembly {
-for { let i := 0 } lt(i, x) { i := add(i, 1) } { y := mul(2, y) }
-        }
+      for {
+        let i := 0
+      } lt(i, x) {
+        i := add(i, 1)
+      } {
+        y := mul(2, y)
+      }
+    }
   }
 
   function callWithComments() {
@@ -40,136 +45,157 @@ for { let i := 0 } lt(i, x) { i := add(i, 1) } { y := mul(2, y) }
   }
 
   function assemblyFunctionNoParameters() {
-		assembly {
-			function getAnswer  ()
-      -> answer {
-          answer:=    42
-			}
-  		}
+    assembly {
+      function getAnswer() -> answer {
+        answer := 42
+      }
+    }
   }
 
   function assemblyFunctionOneParameter() {
-		assembly {
-			function inc  (x)
-      -> result {
-          result := add(x,
-                        1)
-			}
-  		}
+    assembly {
+      function inc(x) -> result {
+        result := add(x, 1)
+      }
+    }
   }
 
   function assemblyFunctionThreeParameters() {
-		assembly {
-			function sum  (a, b, c)
-      -> result {
-          result := add(a,
-                        add(b, c))
-			}
-  		}
+    assembly {
+      function sum(a, b, c) -> result {
+        result := add(a, add(b, c))
+      }
+    }
   }
 
   function assemblyFunctionLongParameters() {
-		assembly {
-			function sum  (thisIs, aFunctionWithVery, veryLongParameterNames, andItAlsoHasALotOfParameters, soItShouldBeSplitInMultipleLines)
-      -> result {
+    assembly {
+      function sum(
+        thisIs,
+        aFunctionWithVery,
+        veryLongParameterNames,
+        andItAlsoHasALotOfParameters,
+        soItShouldBeSplitInMultipleLines
+      ) -> result {
         result := 0
-			}
-  		}
+      }
+    }
   }
 
   function assemblyFunctionLongReturnParameters() {
-		assembly {
-			function sum  (a, b, c, d, e)
-      -> thisIs, aFunctionWithVery, veryLongParameterNames, andItAlsoHasALotOfParameters, soItShouldBeSplitInMultipleLines {
+    assembly {
+      function sum(a, b, c, d, e)
+        ->
+          thisIs,
+          aFunctionWithVery,
+          veryLongParameterNames,
+          andItAlsoHasALotOfParameters,
+          soItShouldBeSplitInMultipleLines
+      {
         thisIs := 0
         aFunctionWithVery := 0
         veryLongParameterNames := 0
         andItAlsoHasALotOfParameters := 0
         soItShouldBeSplitInMultipleLines := 0
-			}
-  		}
+      }
+    }
   }
 
-
-    function assemblyFunctionLongParametersAndReturnParameters() {
-  		assembly {
-  			function sum  (a,veryLong, listof, parameters, thatShould,splitForSure)
-        -> thisIs, aFunctionWithVery, veryLongParameterNames, andItAlsoHasALotOfParameters, soItShouldBeSplitInMultipleLines {
-          thisIs := 0
-          aFunctionWithVery := 0
-          veryLongParameterNames := 0
-          andItAlsoHasALotOfParameters := 0
-          soItShouldBeSplitInMultipleLines := 0
-  			}
-    		}
+  function assemblyFunctionLongParametersAndReturnParameters() {
+    assembly {
+      function sum(a, veryLong, listof, parameters, thatShould, splitForSure)
+        ->
+          thisIs,
+          aFunctionWithVery,
+          veryLongParameterNames,
+          andItAlsoHasALotOfParameters,
+          soItShouldBeSplitInMultipleLines
+      {
+        thisIs := 0
+        aFunctionWithVery := 0
+        veryLongParameterNames := 0
+        andItAlsoHasALotOfParameters := 0
+        soItShouldBeSplitInMultipleLines := 0
+      }
     }
+  }
 
-    function assemblyNoParameterCalls() {
-        assembly {
-            call(gas(), to, value, inputData, inputDataSize, 0, 0)
-        }
+  function assemblyNoParameterCalls() {
+    assembly {
+      call(gas(), to, value, inputData, inputDataSize, 0, 0)
     }
+  }
 
   function assemblyLabels() {
-  assembly {
-    let n := calldataload(4)
-    let a := 1
-    let b := a
-loop:
-    jumpi(loopend, eq(n, 0))
-    a add swap1
-    n := sub(n, 1)
-    jump(loop)
-loopend:
-    mstore(0, a)
-    return(0, 0x20)
-}
+    assembly {
+      let n := calldataload(4)
+      let a := 1
+      let b := a
 
-assembly{
-    let x := 8
-    jump(two)
-    one:
-        // Here the stack height is 2 (because we pushed x and 7),
-        // but the assembler thinks it is 1 because it reads
-        // from top to bottom.
-        // Accessing the stack variable x here will lead to errors.
-        x := 9
-        jump(three)
-    two:
-        7 // push something onto the stack
-        jump(one)
-    three:
-}
-}
 
-  function assemblyFunctionNoReturn () {
+    loop:
+      jumpi(loopend, eq(n, 0))
+      a
+      add
+      swap1
+      n := sub(n, 1)
+      jump(loop)
+
+
+    loopend:
+      mstore(0, a)
+      return(0, 0x20)
+    }
 
     assembly {
+      let x := 8
+      jump(two)
 
-function $somefn(somearg) {
-}
+
+    one:
+      // Here the stack height is 2 (because we pushed x and 7),
+      // but the assembler thinks it is 1 because it reads
+      // from top to bottom.
+      // Accessing the stack variable x here will lead to errors.
+      x := 9
+      jump(three)
+
+
+    two:
+      7 // push something onto the stack
+      jump(one)
+
+
+    three:
     }
   }
 
-    function   letWithoutValue ( ) {
+  function assemblyFunctionNoReturn() {
+    assembly {
+      function $somefn(somearg) {
 
-       assembly {   let result   }
+      }
+    }
   }
 
-    function   memberAccess ( ) {
-
-       assembly {  
-          ds.slot   :=   position
-          offset   :=   x.offset
-       }
+  function letWithoutValue() {
+    assembly {
+      let result
+    }
   }
 
-  function commentsInAssemblyBlock () {
+  function memberAccess() {
+    assembly {
+      ds.slot := position
+      offset := x.offset
+    }
+  }
 
-       assembly {  
-                 /* foo bar baz */
-                 /* foobbbbbb */
-       }
+  function commentsInAssemblyBlock() {
+    assembly {
+      /* foo bar baz */
+      /* foobbbbbb */
+    }
   }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -317,6 +343,7 @@ contract Assembly {
             let a := 1
             let b := a
 
+
         loop:
             jumpi(loopend, eq(n, 0))
             a
@@ -324,6 +351,7 @@ contract Assembly {
             swap1
             n := sub(n, 1)
             jump(loop)
+
 
         loopend:
             mstore(0, a)
@@ -334,6 +362,7 @@ contract Assembly {
             let x := 8
             jump(two)
 
+
         one:
             // Here the stack height is 2 (because we pushed x and 7),
             // but the assembler thinks it is 1 because it reads
@@ -342,9 +371,11 @@ contract Assembly {
             x := 9
             jump(three)
 
+
         two:
             7 // push something onto the stack
             jump(one)
+
 
         three:
         }
@@ -385,29 +416,34 @@ exports[`Assembly.sol 2`] = `
 contract Assembly {
   function ifAssembly() {
     assembly {
-      if
-        returndatasize    {
-          success := 0
+      if returndatasize {
+        success := 0
       }
     }
   }
 
   function caseAssembly() {
     assembly {
-          switch value
-            case 0 {
-              mstore(0, 0x0000000000000000000000000000000000000000000000000000000000000000)
-            }
-            case 1 {
-                mstore(0, 0x1111111111111111111111111111111111111111111111111111111111111111)
-            }
+      switch value
+        case 0 {
+          mstore(0, 0x0000000000000000000000000000000000000000000000000000000000000000)
         }
+        case 1 {
+          mstore(0, 0x1111111111111111111111111111111111111111111111111111111111111111)
+        }
+    }
   }
 
   function forAssembly() {
     assembly {
-for { let i := 0 } lt(i, x) { i := add(i, 1) } { y := mul(2, y) }
-        }
+      for {
+        let i := 0
+      } lt(i, x) {
+        i := add(i, 1)
+      } {
+        y := mul(2, y)
+      }
+    }
   }
 
   function callWithComments() {
@@ -421,136 +457,157 @@ for { let i := 0 } lt(i, x) { i := add(i, 1) } { y := mul(2, y) }
   }
 
   function assemblyFunctionNoParameters() {
-		assembly {
-			function getAnswer  ()
-      -> answer {
-          answer:=    42
-			}
-  		}
+    assembly {
+      function getAnswer() -> answer {
+        answer := 42
+      }
+    }
   }
 
   function assemblyFunctionOneParameter() {
-		assembly {
-			function inc  (x)
-      -> result {
-          result := add(x,
-                        1)
-			}
-  		}
+    assembly {
+      function inc(x) -> result {
+        result := add(x, 1)
+      }
+    }
   }
 
   function assemblyFunctionThreeParameters() {
-		assembly {
-			function sum  (a, b, c)
-      -> result {
-          result := add(a,
-                        add(b, c))
-			}
-  		}
+    assembly {
+      function sum(a, b, c) -> result {
+        result := add(a, add(b, c))
+      }
+    }
   }
 
   function assemblyFunctionLongParameters() {
-		assembly {
-			function sum  (thisIs, aFunctionWithVery, veryLongParameterNames, andItAlsoHasALotOfParameters, soItShouldBeSplitInMultipleLines)
-      -> result {
+    assembly {
+      function sum(
+        thisIs,
+        aFunctionWithVery,
+        veryLongParameterNames,
+        andItAlsoHasALotOfParameters,
+        soItShouldBeSplitInMultipleLines
+      ) -> result {
         result := 0
-			}
-  		}
+      }
+    }
   }
 
   function assemblyFunctionLongReturnParameters() {
-		assembly {
-			function sum  (a, b, c, d, e)
-      -> thisIs, aFunctionWithVery, veryLongParameterNames, andItAlsoHasALotOfParameters, soItShouldBeSplitInMultipleLines {
+    assembly {
+      function sum(a, b, c, d, e)
+        ->
+          thisIs,
+          aFunctionWithVery,
+          veryLongParameterNames,
+          andItAlsoHasALotOfParameters,
+          soItShouldBeSplitInMultipleLines
+      {
         thisIs := 0
         aFunctionWithVery := 0
         veryLongParameterNames := 0
         andItAlsoHasALotOfParameters := 0
         soItShouldBeSplitInMultipleLines := 0
-			}
-  		}
+      }
+    }
   }
 
-
-    function assemblyFunctionLongParametersAndReturnParameters() {
-  		assembly {
-  			function sum  (a,veryLong, listof, parameters, thatShould,splitForSure)
-        -> thisIs, aFunctionWithVery, veryLongParameterNames, andItAlsoHasALotOfParameters, soItShouldBeSplitInMultipleLines {
-          thisIs := 0
-          aFunctionWithVery := 0
-          veryLongParameterNames := 0
-          andItAlsoHasALotOfParameters := 0
-          soItShouldBeSplitInMultipleLines := 0
-  			}
-    		}
+  function assemblyFunctionLongParametersAndReturnParameters() {
+    assembly {
+      function sum(a, veryLong, listof, parameters, thatShould, splitForSure)
+        ->
+          thisIs,
+          aFunctionWithVery,
+          veryLongParameterNames,
+          andItAlsoHasALotOfParameters,
+          soItShouldBeSplitInMultipleLines
+      {
+        thisIs := 0
+        aFunctionWithVery := 0
+        veryLongParameterNames := 0
+        andItAlsoHasALotOfParameters := 0
+        soItShouldBeSplitInMultipleLines := 0
+      }
     }
+  }
 
-    function assemblyNoParameterCalls() {
-        assembly {
-            call(gas(), to, value, inputData, inputDataSize, 0, 0)
-        }
+  function assemblyNoParameterCalls() {
+    assembly {
+      call(gas(), to, value, inputData, inputDataSize, 0, 0)
     }
+  }
 
   function assemblyLabels() {
-  assembly {
-    let n := calldataload(4)
-    let a := 1
-    let b := a
-loop:
-    jumpi(loopend, eq(n, 0))
-    a add swap1
-    n := sub(n, 1)
-    jump(loop)
-loopend:
-    mstore(0, a)
-    return(0, 0x20)
-}
+    assembly {
+      let n := calldataload(4)
+      let a := 1
+      let b := a
 
-assembly{
-    let x := 8
-    jump(two)
-    one:
-        // Here the stack height is 2 (because we pushed x and 7),
-        // but the assembler thinks it is 1 because it reads
-        // from top to bottom.
-        // Accessing the stack variable x here will lead to errors.
-        x := 9
-        jump(three)
-    two:
-        7 // push something onto the stack
-        jump(one)
-    three:
-}
-}
 
-  function assemblyFunctionNoReturn () {
+    loop:
+      jumpi(loopend, eq(n, 0))
+      a
+      add
+      swap1
+      n := sub(n, 1)
+      jump(loop)
+
+
+    loopend:
+      mstore(0, a)
+      return(0, 0x20)
+    }
 
     assembly {
+      let x := 8
+      jump(two)
 
-function $somefn(somearg) {
-}
+
+    one:
+      // Here the stack height is 2 (because we pushed x and 7),
+      // but the assembler thinks it is 1 because it reads
+      // from top to bottom.
+      // Accessing the stack variable x here will lead to errors.
+      x := 9
+      jump(three)
+
+
+    two:
+      7 // push something onto the stack
+      jump(one)
+
+
+    three:
     }
   }
 
-    function   letWithoutValue ( ) {
+  function assemblyFunctionNoReturn() {
+    assembly {
+      function $somefn(somearg) {
 
-       assembly {   let result   }
+      }
+    }
   }
 
-    function   memberAccess ( ) {
-
-       assembly {  
-          ds.slot   :=   position
-          offset   :=   x.offset
-       }
+  function letWithoutValue() {
+    assembly {
+      let result
+    }
   }
 
-  function commentsInAssemblyBlock () {
+  function memberAccess() {
+    assembly {
+      ds.slot := position
+      offset := x.offset
+    }
+  }
 
-       assembly {  
-                 /* foo bar baz */
-                 /* foobbbbbb */
-       }
+  function commentsInAssemblyBlock() {
+    assembly {
+      /* foo bar baz */
+      /* foobbbbbb */
+    }
   }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -698,6 +755,7 @@ contract Assembly {
             let a := 1
             let b := a
 
+
         loop:
             jumpi(loopend, eq(n, 0))
             a
@@ -705,6 +763,7 @@ contract Assembly {
             swap1
             n := sub(n, 1)
             jump(loop)
+
 
         loopend:
             mstore(0, a)
@@ -715,6 +774,7 @@ contract Assembly {
             let x := 8
             jump(two)
 
+
         one:
             // Here the stack height is 2 (because we pushed x and 7),
             // but the assembler thinks it is 1 because it reads
@@ -723,9 +783,11 @@ contract Assembly {
             x := 9
             jump(three)
 
+
         two:
             7 // push something onto the stack
             jump(one)
+
 
         three:
         }
@@ -772,13 +834,13 @@ contract B {}
 contract C {}
 
 contract A {
-    function spam() public pure {
-        // ...
-    }
+  function spam() public pure {
+    // ...
+  }
 
-    function ham() public pure {
-        // ...
-    }
+  function ham() public pure {
+    // ...
+  }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 pragma solidity >=0.4.0 <0.7.0;
@@ -811,13 +873,13 @@ contract B {}
 contract C {}
 
 contract A {
-    function spam() public pure {
-        // ...
-    }
+  function spam() public pure {
+    // ...
+  }
 
-    function ham() public pure {
-        // ...
-    }
+  function ham() public pure {
+    // ...
+  }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 pragma solidity >=0.4.0 <0.7.0;
@@ -842,25 +904,25 @@ contract A {
 
 exports[`Quotes.sol 1`] = `
 import 'someContract.sol';
-import "someOtherContract.sol";
+import 'someOtherContract.sol';
 
 contract Foo {
   string foo1 = 'foo';
-  string foo2 = "foo";
+  string foo2 = 'foo';
   string spaces1 = 'the quick brown fox';
-  string spaces2 = "the quick brown fox";
+  string spaces2 = 'the quick brown fox';
   string singleQuote = "don't do that";
-  string escapedSingleQuote = 'don\\'t do that';
+  string escapedSingleQuote = "don't do that";
   string doubleQuote = 'Use " for quoting';
-  string escapedDoubleQuote = "Use \\" for quoting";
+  string escapedDoubleQuote = 'Use " for quoting';
   string singleQuotes = "don't do that, don't";
-  string escapedSingleQuotes = 'don\\'t do that, don\\'t';
+  string escapedSingleQuotes = "don't do that, don't";
   string doubleQuotes = 'The "quick" brown fox';
-  string escapeDoubleQuotes = "The \\"quick\\" brown fox";
+  string escapeDoubleQuotes = 'The "quick" brown fox';
   string hex1 = hex'DeadBeef';
-  string hex2 = hex"DeadBeef";
+  string hex2 = hex'DeadBeef';
   string withUnicode1 = unicode'hello 🦄 world';
-  string withUnicode2 = unicode"hello 🦄 world";
+  string withUnicode2 = unicode'hello 🦄 world';
   string multiPartAndUnicode1 = unicode'hello 🦄' ' world';
   string multiPartAndUnicode2 = 'hello ' unicode' 🦄world';
   string multiPartAndUnicode3 = unicode'hello 🦄' unicode' world 🦄';
@@ -895,25 +957,25 @@ contract Foo {
 
 exports[`Quotes.sol 2`] = `
 import 'someContract.sol';
-import "someOtherContract.sol";
+import 'someOtherContract.sol';
 
 contract Foo {
   string foo1 = 'foo';
-  string foo2 = "foo";
+  string foo2 = 'foo';
   string spaces1 = 'the quick brown fox';
-  string spaces2 = "the quick brown fox";
+  string spaces2 = 'the quick brown fox';
   string singleQuote = "don't do that";
-  string escapedSingleQuote = 'don\\'t do that';
+  string escapedSingleQuote = "don't do that";
   string doubleQuote = 'Use " for quoting';
-  string escapedDoubleQuote = "Use \\" for quoting";
+  string escapedDoubleQuote = 'Use " for quoting';
   string singleQuotes = "don't do that, don't";
-  string escapedSingleQuotes = 'don\\'t do that, don\\'t';
+  string escapedSingleQuotes = "don't do that, don't";
   string doubleQuotes = 'The "quick" brown fox';
-  string escapeDoubleQuotes = "The \\"quick\\" brown fox";
+  string escapeDoubleQuotes = 'The "quick" brown fox';
   string hex1 = hex'DeadBeef';
-  string hex2 = hex"DeadBeef";
+  string hex2 = hex'DeadBeef';
   string withUnicode1 = unicode'hello 🦄 world';
-  string withUnicode2 = unicode"hello 🦄 world";
+  string withUnicode2 = unicode'hello 🦄 world';
   string multiPartAndUnicode1 = unicode'hello 🦄' ' world';
   string multiPartAndUnicode2 = 'hello ' unicode' 🦄world';
   string multiPartAndUnicode3 = unicode'hello 🦄' unicode' world 🦄';
@@ -949,106 +1011,128 @@ contract Foo {
 exports[`TryCatch.sol 1`] = `
 pragma solidity ^0.6.0;
 
-interface DataFeed { function getData(address token) external returns (uint value); }
+interface DataFeed {
+  function getData(address token) external returns (uint256 value);
+}
 
 contract FeedConsumer {
   DataFeed feed;
-      uint errorCount;
-     function rate(address token) public returns (uint value, bool success) {
-        // Permanently disable the mechanism if there are
-        // more than 10 errors.
-        require(errorCount < 10);
-        try    feed.getData(token)
-        returns (uint v)    {
-              return (v, true);
-        } catch 
-        Error(string memory /*reason*/) 
-          {
-            // This is executed in case
-            // revert was called inside getData
-            // and a reason string was provided.
-            errorCount++;
-            return (0, false);
-        }      catch (bytes memory /*lowLevelData*/
-                     ) {
-            // This is executed in case revert() was used
-            // or there was a failing assertion, division
-            // by zero, etc. inside getData.
-          errorCount++;
-          return (0, false);
-        } }
+  uint256 errorCount;
 
-        function rate2(address token) public returns (uint value, bool success) {
-           // Permanently disable the mechanism if there are
-           // more than 10 errors.
-           require(errorCount < 10);
-           try    feed.getData(token)
-           returns (uint v, uint v1,uint v2,uint v3,uint v4,uint v5,uint v6,uint v7,uint v8)    {
-                 return (v, true);
-           } catch
-           Error(string memory /*reason*/)
-             {
-               // This is executed in case
-               // revert was called inside getData
-               // and a reason string was provided.
-               errorCount++;
-               return (0, false);
-           }      catch (bytes memory /*lowLevelData*/
-                        ) {
-               // This is executed in case revert() was used
-               // or there was a failing assertion, division
-               // by zero, etc. inside getData.
-             errorCount++;
-             return (0, false);
-           } }
-
-           function rate3(address token) public returns (uint value, bool success) {
-              // Permanently disable the mechanism if there are
-              // more than 10 errors.
-              require(errorCount < 10);
-              try    feed.getData(token)   {
-                    return (v, true);
-              } catch
-              Error(string memory /*reason*/)
-                {
-                  // This is executed in case
-                  // revert was called inside getData
-                  // and a reason string was provided.
-                  errorCount++;
-                  return (0, false);
-              }      catch {
-                  // This is executed in case revert() was used
-                  // or there was a failing assertion, division
-                  // by zero, etc. inside getData.
-                errorCount++;
-                return (0, false);
-              } }
-
-    function rate4(address token) public returns (uint value, bool success) {
-        // Permanently disable the mechanism if there are
-        // more than 10 errors.
-        require(errorCount < 10);
-        try feed.getData(token) returns (uint v) {
-            return (v, true);
-        } catch Error(string memory /*reason*/) {
-            // This is executed in case
-            // revert was called inside getData
-            // and a reason string was provided.
-            errorCount++;
-            return (0, false);
-        } catch Panic(uint /*errorCode*/) {
-            // This is executed in case of a panic,
-            // i.e. a serious error like division by zero
-            // or overflow. The error code can be used
-            // to determine the kind of error.
-            errorCount++;
-            return (0, false);
-        } catch (bytes memory /*lowLevelData*/) {
-            // This is executed in case revert() was used.
-            errorCount++;
-            return (0, false);
-        }
+  function rate(address token) public returns (uint256 value, bool success) {
+    // Permanently disable the mechanism if there are
+    // more than 10 errors.
+    require(errorCount < 10);
+    try feed.getData(token) returns (uint256 v) {
+      return (v, true);
+    } catch Error(
+      string memory /*reason*/
+    ) {
+      // This is executed in case
+      // revert was called inside getData
+      // and a reason string was provided.
+      errorCount++;
+      return (0, false);
+    } catch (
+      bytes memory /*lowLevelData*/
+    ) {
+      // This is executed in case revert() was used
+      // or there was a failing assertion, division
+      // by zero, etc. inside getData.
+      errorCount++;
+      return (0, false);
     }
+  }
+
+  function rate2(address token) public returns (uint256 value, bool success) {
+    // Permanently disable the mechanism if there are
+    // more than 10 errors.
+    require(errorCount < 10);
+    try feed.getData(token) returns (
+      uint256 v,
+      uint256 v1,
+      uint256 v2,
+      uint256 v3,
+      uint256 v4,
+      uint256 v5,
+      uint256 v6,
+      uint256 v7,
+      uint256 v8
+    ) {
+      return (v, true);
+    } catch Error(
+      string memory /*reason*/
+    ) {
+      // This is executed in case
+      // revert was called inside getData
+      // and a reason string was provided.
+      errorCount++;
+      return (0, false);
+    } catch (
+      bytes memory /*lowLevelData*/
+    ) {
+      // This is executed in case revert() was used
+      // or there was a failing assertion, division
+      // by zero, etc. inside getData.
+      errorCount++;
+      return (0, false);
+    }
+  }
+
+  function rate3(address token) public returns (uint256 value, bool success) {
+    // Permanently disable the mechanism if there are
+    // more than 10 errors.
+    require(errorCount < 10);
+    try feed.getData(token) {
+      return (v, true);
+    } catch Error(
+      string memory /*reason*/
+    ) {
+      // This is executed in case
+      // revert was called inside getData
+      // and a reason string was provided.
+      errorCount++;
+      return (0, false);
+    } catch {
+      // This is executed in case revert() was used
+      // or there was a failing assertion, division
+      // by zero, etc. inside getData.
+      errorCount++;
+      return (0, false);
+    }
+  }
+
+  function rate4(address token) public returns (uint256 value, bool success) {
+    // Permanently disable the mechanism if there are
+    // more than 10 errors.
+    require(errorCount < 10);
+    try feed.getData(token) returns (uint256 v) {
+      return (v, true);
+    } catch Error(
+      string memory /*reason*/
+    ) {
+      // This is executed in case
+      // revert was called inside getData
+      // and a reason string was provided.
+      errorCount++;
+      return (0, false);
+    } catch Panic(
+      uint256 /*errorCode*/
+    ) {
+      // This is executed in case of a panic,
+      // i.e. a serious error like division by zero
+      // or overflow. The error code can be used
+      // to determine the kind of error.
+      errorCount++;
+      return (0, false);
+    } catch (
+      bytes memory /*lowLevelData*/
+    ) {
+      // This is executed in case revert() was used.
+      errorCount++;
+      return (0, false);
+    }
+  }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 pragma solidity ^0.6.0;
@@ -1182,106 +1266,128 @@ contract FeedConsumer {
 exports[`TryCatch.sol 2`] = `
 pragma solidity ^0.6.0;
 
-interface DataFeed { function getData(address token) external returns (uint value); }
+interface DataFeed {
+  function getData(address token) external returns (uint256 value);
+}
 
 contract FeedConsumer {
   DataFeed feed;
-      uint errorCount;
-     function rate(address token) public returns (uint value, bool success) {
-        // Permanently disable the mechanism if there are
-        // more than 10 errors.
-        require(errorCount < 10);
-        try    feed.getData(token)
-        returns (uint v)    {
-              return (v, true);
-        } catch 
-        Error(string memory /*reason*/) 
-          {
-            // This is executed in case
-            // revert was called inside getData
-            // and a reason string was provided.
-            errorCount++;
-            return (0, false);
-        }      catch (bytes memory /*lowLevelData*/
-                     ) {
-            // This is executed in case revert() was used
-            // or there was a failing assertion, division
-            // by zero, etc. inside getData.
-          errorCount++;
-          return (0, false);
-        } }
+  uint256 errorCount;
 
-        function rate2(address token) public returns (uint value, bool success) {
-           // Permanently disable the mechanism if there are
-           // more than 10 errors.
-           require(errorCount < 10);
-           try    feed.getData(token)
-           returns (uint v, uint v1,uint v2,uint v3,uint v4,uint v5,uint v6,uint v7,uint v8)    {
-                 return (v, true);
-           } catch
-           Error(string memory /*reason*/)
-             {
-               // This is executed in case
-               // revert was called inside getData
-               // and a reason string was provided.
-               errorCount++;
-               return (0, false);
-           }      catch (bytes memory /*lowLevelData*/
-                        ) {
-               // This is executed in case revert() was used
-               // or there was a failing assertion, division
-               // by zero, etc. inside getData.
-             errorCount++;
-             return (0, false);
-           } }
-
-           function rate3(address token) public returns (uint value, bool success) {
-              // Permanently disable the mechanism if there are
-              // more than 10 errors.
-              require(errorCount < 10);
-              try    feed.getData(token)   {
-                    return (v, true);
-              } catch
-              Error(string memory /*reason*/)
-                {
-                  // This is executed in case
-                  // revert was called inside getData
-                  // and a reason string was provided.
-                  errorCount++;
-                  return (0, false);
-              }      catch {
-                  // This is executed in case revert() was used
-                  // or there was a failing assertion, division
-                  // by zero, etc. inside getData.
-                errorCount++;
-                return (0, false);
-              } }
-
-    function rate4(address token) public returns (uint value, bool success) {
-        // Permanently disable the mechanism if there are
-        // more than 10 errors.
-        require(errorCount < 10);
-        try feed.getData(token) returns (uint v) {
-            return (v, true);
-        } catch Error(string memory /*reason*/) {
-            // This is executed in case
-            // revert was called inside getData
-            // and a reason string was provided.
-            errorCount++;
-            return (0, false);
-        } catch Panic(uint /*errorCode*/) {
-            // This is executed in case of a panic,
-            // i.e. a serious error like division by zero
-            // or overflow. The error code can be used
-            // to determine the kind of error.
-            errorCount++;
-            return (0, false);
-        } catch (bytes memory /*lowLevelData*/) {
-            // This is executed in case revert() was used.
-            errorCount++;
-            return (0, false);
-        }
+  function rate(address token) public returns (uint256 value, bool success) {
+    // Permanently disable the mechanism if there are
+    // more than 10 errors.
+    require(errorCount < 10);
+    try feed.getData(token) returns (uint256 v) {
+      return (v, true);
+    } catch Error(
+      string memory /*reason*/
+    ) {
+      // This is executed in case
+      // revert was called inside getData
+      // and a reason string was provided.
+      errorCount++;
+      return (0, false);
+    } catch (
+      bytes memory /*lowLevelData*/
+    ) {
+      // This is executed in case revert() was used
+      // or there was a failing assertion, division
+      // by zero, etc. inside getData.
+      errorCount++;
+      return (0, false);
     }
+  }
+
+  function rate2(address token) public returns (uint256 value, bool success) {
+    // Permanently disable the mechanism if there are
+    // more than 10 errors.
+    require(errorCount < 10);
+    try feed.getData(token) returns (
+      uint256 v,
+      uint256 v1,
+      uint256 v2,
+      uint256 v3,
+      uint256 v4,
+      uint256 v5,
+      uint256 v6,
+      uint256 v7,
+      uint256 v8
+    ) {
+      return (v, true);
+    } catch Error(
+      string memory /*reason*/
+    ) {
+      // This is executed in case
+      // revert was called inside getData
+      // and a reason string was provided.
+      errorCount++;
+      return (0, false);
+    } catch (
+      bytes memory /*lowLevelData*/
+    ) {
+      // This is executed in case revert() was used
+      // or there was a failing assertion, division
+      // by zero, etc. inside getData.
+      errorCount++;
+      return (0, false);
+    }
+  }
+
+  function rate3(address token) public returns (uint256 value, bool success) {
+    // Permanently disable the mechanism if there are
+    // more than 10 errors.
+    require(errorCount < 10);
+    try feed.getData(token) {
+      return (v, true);
+    } catch Error(
+      string memory /*reason*/
+    ) {
+      // This is executed in case
+      // revert was called inside getData
+      // and a reason string was provided.
+      errorCount++;
+      return (0, false);
+    } catch {
+      // This is executed in case revert() was used
+      // or there was a failing assertion, division
+      // by zero, etc. inside getData.
+      errorCount++;
+      return (0, false);
+    }
+  }
+
+  function rate4(address token) public returns (uint256 value, bool success) {
+    // Permanently disable the mechanism if there are
+    // more than 10 errors.
+    require(errorCount < 10);
+    try feed.getData(token) returns (uint256 v) {
+      return (v, true);
+    } catch Error(
+      string memory /*reason*/
+    ) {
+      // This is executed in case
+      // revert was called inside getData
+      // and a reason string was provided.
+      errorCount++;
+      return (0, false);
+    } catch Panic(
+      uint256 /*errorCode*/
+    ) {
+      // This is executed in case of a panic,
+      // i.e. a serious error like division by zero
+      // or overflow. The error code can be used
+      // to determine the kind of error.
+      errorCount++;
+      return (0, false);
+    } catch (
+      bytes memory /*lowLevelData*/
+    ) {
+      // This is executed in case revert() was used.
+      errorCount++;
+      return (0, false);
+    }
+  }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 pragma solidity ^0.6.0;
@@ -1416,14 +1522,14 @@ exports[`WhitespaceInExpressions.sol 1`] = `
 pragma solidity >=0.4.0 <0.7.0;
 
 contract WhitespaceInExpressions {
-    function() {
-        spam(ham[1], Coin({name: "ham"}));
-        x = 1;
-        y = 2;
-        long_variable = 3;
-    }
+  function() {
+    spam(ham[1], Coin({ name: 'ham' }));
+    x = 1;
+    y = 2;
+    long_variable = 3;
+  }
 
-    function spam(uint256 i, Coin coin) public;
+  function spam(uint256 i, Coin coin) public;
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 pragma solidity >=0.4.0 <0.7.0;
@@ -1445,14 +1551,14 @@ exports[`WhitespaceInExpressions.sol 2`] = `
 pragma solidity >=0.4.0 <0.7.0;
 
 contract WhitespaceInExpressions {
-    function() {
-        spam(ham[1], Coin({name: "ham"}));
-        x = 1;
-        y = 2;
-        long_variable = 3;
-    }
+  function() {
+    spam(ham[1], Coin({ name: 'ham' }));
+    x = 1;
+    y = 2;
+    long_variable = 3;
+  }
 
-    function spam(uint256 i, Coin coin) public;
+  function spam(uint256 i, Coin coin) public;
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 pragma solidity >=0.4.0 <0.7.0;
