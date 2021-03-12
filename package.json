@@ -12,7 +12,7 @@
     "test:jest": "npx jest -u",
     "codecov": "npx codecov",
     "lint": "npx eslint . --fix",
-    "fmt": "npx prettier --config .prettierrc --write . "
+    "fmt:sol": "npx prettier --config src/index.js --write tests/*.sol"
   },
   "repository": {
     "type": "git",

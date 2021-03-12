@@ -1,1 +1,4 @@
 *.html
+tests/
+*.sol
+src/*
