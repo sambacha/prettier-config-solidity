@@ -1,4 +1,6 @@
-# [prettier-solidity-config](#)
+# [prettier-config-solidity](#)
+
+> Prettier configuration for Solidity 
 
 ## Quickstart
 
@@ -24,7 +26,7 @@ Prettier configuration for Solidity
 #### Prettier
 
 ```bash
-npm i -D prettier prettier-plugin-solidity --save-exact
+npm i -D prettier prettier-plugin-solidity prettier-config-solidity  --save-exact
 ```
 
 #### with SolHint
