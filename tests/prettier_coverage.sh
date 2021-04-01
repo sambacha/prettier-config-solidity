@@ -8,9 +8,9 @@ echo $GITHUB_SHA
 echo "::debug::Get the Git REF"
 echo $GITHUB_BASE_REF
 echo "::debug::Set the CI Locales"
-export LANG en_US.UTF-8
-export LANGUAGE en_US.UTF-8
-export LC_ALL en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=C
 echo "::debug::Run npm ci"
 npm ci
 echo "::debug::Execute testing"
