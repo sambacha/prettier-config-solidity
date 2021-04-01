@@ -1,22 +1,23 @@
 {
   "name": "prettier-config-solidity",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "conformant configuration for linting solidity files with prettier, based on offical solidity documentation",
-  "prettier": "prettier-solidity-config",
+  "prettier": ["prettier-solidity-config", "prettier-config-solidity"],
   "main": "src/index.js",
   "directories": {
-    "test": "test"
+    "test": "test",
+     "src": "src"
   },
   "scripts": {
     "test": "npx jest",
     "test:jest": "npx jest -u",
     "codecov": "npx codecov",
     "lint": "npx eslint . --fix",
-    "fmt:sol": "npx prettier --config src/index.js --write tests/*.sol"
+    "test:prettier": "npx prettier --config src/index.js --write tests/*.sol"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sambacha/prettier-solidity-config.git"
+    "url": "git+https://github.com/sambacha/prettier-config-solidity.git"
   },
   "keywords": [
     "solidity",
@@ -25,15 +26,17 @@
     "lint",
     "defi",
     "cryptocurrency",
-    "shrable",
+    "preset",
+    "airbnb",
+    "conventional",
     "config"
   ],
   "author": "sam bacha <sam@freighttrust.com>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/sambacha/prettier-solidity-config/issues"
+    "url": "https://github.com/sambacha/prettier-config-solidity/issues"
   },
-  "homepage": "https://github.com/sambacha/prettier-solidity-config#readme",
+  "homepage": "https://github.com/sambacha/prettier-config-solidity#readme",
   "devDependencies": {
     "codecov": "3.8.1",
     "eslint": "7.21.0",
