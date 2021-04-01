@@ -1,13 +1,11 @@
 /**
  * @file Prettier configuration for Solidity
  * @version 1.1.0
- * @summary base config adapted from AirBNB to minizmie diff churn
+ * @summary base config adapted from AirBNB to reduce diff churn
  * @overrides solidity settings from Solidity Documentation
  * @note `printWidth` is not a line character capture
  * @dev `explicitTypes`
  */
-
-
 
 module.exports = {
   arrowParens: 'always',
@@ -36,3 +34,4 @@ module.exports = {
     },
   ],
 };
+/** @exports prettier-config-solidity */

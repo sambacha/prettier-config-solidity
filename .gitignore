@@ -6,6 +6,12 @@ build/
 *.tar.gz
 *.zip
 *.tar
-
 *.log
+**/__mocks__/**
+**/__tests__/**
+**/examples/**
+**/tasks/**
+.nyc_output
+
+spec/_json/*.js
 

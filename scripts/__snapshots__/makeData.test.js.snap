@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`makeData to match snapshot 1`] = `
+"/* This file was automatically generated on 1479427200 */
+
+  /* eslint-disable global-require */
+
+  module.exports = {};"
+`;

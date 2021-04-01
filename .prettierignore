@@ -1,4 +1,9 @@
 *.html
 tests/
 *.sol
-src/*
+!src/*
+test_config/
+tests_config/
+test/
+__snapshots__
+coverage/

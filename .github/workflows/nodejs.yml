@@ -21,5 +21,6 @@ jobs:
         run: |
           npm install
           npm run test
+          bash scripts/run-coverage.sh
         env:
-          CI: ""
+          CI: true

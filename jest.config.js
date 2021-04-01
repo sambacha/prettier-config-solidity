@@ -5,6 +5,7 @@ module.exports = {
   collectCoverageFrom: [
     "scripts/**/*.js",
     "!scripts/generateIndexes.js",
+    "!scripts/makeData.js",
     "src/**/*.js",
     "!<rootDir>/node_modules/",
     "!src/prettier-comments/**/*.js",

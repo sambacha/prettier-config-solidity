@@ -14,9 +14,9 @@
   "scripts": {
     "test": "npx jest",
     "test:jest": "npx jest -u",
+    "test:prettier": "npx prettier --loglevel debug --config src/index.js --write tests/*.sol",
     "codecov": "npx codecov",
     "lint": "npx eslint . --fix",
-    "test:prettier": "npx prettier --loglevel debug --config src/index.js --write tests/*.sol",
     "lint:format": "npx prettier --loglevel debug --write ."
   },
   "repository": {
@@ -43,6 +43,7 @@
   "homepage": "https://github.com/sambacha/prettier-config-solidity#readme",
   "devDependencies": {
     "codecov": "3.8.1",
+    "dir-to-object": "^2.0.0",
     "eslint": "7.21.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-config-prettier": "8.1.0",
@@ -62,6 +63,6 @@
   },
   "peerDependencies": {
     "prettier": "2.2.1",
-    "prettier-plugin-solidity": "1.0.0-beta.6",
+    "prettier-plugin-solidity": "1.0.0-beta.6"
   }
 }
