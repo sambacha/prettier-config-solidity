@@ -52,7 +52,7 @@
     "jest-snapshot-generate": "1.0.0",
     "jest-watch-typeahead": "0.6.1",
     "prettier": "2.2.1",
-    "prettier-plugin-solidity": "^1.0.0-beta.6",
+    "prettier-plugin-solidity": "1.0.0-beta.6",
     "semantic-release": "17.4.2",
     "solhint": "^3.3.4",
     "solhint-plugin-prettier": "^0.0.5"
@@ -61,6 +61,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "prettier": "^2.2.1"
+    "prettier": "2.2.1",
+    "prettier-plugin-solidity": "1.0.0-beta.6",
   }
 }
