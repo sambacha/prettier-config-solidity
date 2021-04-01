@@ -4,7 +4,7 @@ name: nodejs
 on: ['push']
 
 jobs:
-  build:
+  e2e:
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,6 +20,7 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
+          sh tests/prettier_coverage.sh
           npm run test
         env:
-          CI: ''
+          CI: true
