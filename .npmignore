@@ -5,3 +5,8 @@ tests/
 __snapshots__
 jest.config.js
 renovate.json
+test_config/
+__tests__
+.eslint*
+.prettier*
+!src/*.js
