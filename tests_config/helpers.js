@@ -1,7 +1,7 @@
 // @file jest helper file
-const fs = require('fs');
-const path = require('path');
-const prettier = require('prettier');
+const fs = require("fs");
+const path = require("path");
+const prettier = require("prettier");
 
 function mergeDefaultOptions(parserConfig) {
   return {
@@ -16,7 +16,7 @@ function prettyprint(src, options) {
   if (options.cursorOffset >= 0) {
     result.formatted = `${result.formatted.slice(
       0,
-      result.cursorOffset,
+      result.cursorOffset
     )}<|>${result.formatted.slice(result.cursorOffset)}`;
   }
   return result.formatted;
@@ -28,14 +28,14 @@ function prettyprint(src, options) {
  * Backticks will still be escaped.
  */
 function raw(string) {
-  if (typeof string !== 'string') {
-    throw new Error('Raw snapshots have to be strings.');
+  if (typeof string !== "string") {
+    throw new Error("Raw snapshots have to be strings.");
   }
-  return { [Symbol.for('raw')]: string };
+  return { [Symbol.for("raw")]: string };
 }
 
 function read(filename) {
-  return fs.readFileSync(filename, 'utf8');
+  return fs.readFileSync(filename, "utf8");
 }
 
 function parse(string, opts) {

@@ -7,7 +7,7 @@
  * @dev `explicitTypes`
  */
 
-'use strict';
+
 
 module.exports = {
   arrowParens: 'always',

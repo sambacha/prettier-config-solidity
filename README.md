@@ -1,6 +1,6 @@
 # [prettier-config-solidity](#)
 
-> Prettier configuration for Solidity 
+> Prettier configuration for Solidity
 
 ## Quickstart
 
@@ -11,9 +11,9 @@
  * @summary Prettier Configuration for Solidity
  */
 
-'use strict';
+"use strict";
 
-const prettierConfig = require('prettier-config-solidity');
+const prettierConfig = require("prettier-config-solidity");
 module.exports = prettierConfig;
 ```
 
@@ -59,10 +59,10 @@ guide):
 
 ```jsx
 // bad
-const foo = { clark: 'kent' };
+const foo = { clark: "kent" };
 
 // good
-const foo = { clark: 'kent' };
+const foo = { clark: "kent" };
 ```
 
 #### arrow-parens
@@ -83,13 +83,13 @@ const foo = { clark: 'kent' };
 // bad
 [1, 2, 3].map(
   (number) =>
-    `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`,
+    `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`
 );
 
 // good
 [1, 2, 3].map(
   (number) =>
-    `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`,
+    `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`
 );
 
 // bad
@@ -119,18 +119,18 @@ const foo = { clark: 'kent' };
 // bad
 const items = getItems(),
   goSportsTeam = true,
-  dragonball = 'z';
+  dragonball = "z";
 
 // bad
 // (compare to above, and try to spot the mistake)
 const items = getItems(),
   goSportsTeam = true;
-dragonball = 'z';
+dragonball = "z";
 
 // good
 const items = getItems();
 const goSportsTeam = true;
-const dragonball = 'z';
+const dragonball = "z";
 ```
 
 #### 20.2 Additional trailing comma: Yup. eslint: comma-dangle

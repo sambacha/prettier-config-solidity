@@ -1,38 +1,38 @@
 // source: https://github.com/prettier/prettier/blob/ee2839bacbf6a52d004fa2f0373b732f6f191ccc/tests_config/run_spec.js
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 const { AST_COMPARE } = process.env;
 
-const prettier = require('prettier');
+const prettier = require("prettier");
 
 function run_spec(dirname, options) {
   fs.readdirSync(dirname).forEach((filename) => {
     const filepath = `${dirname}/${filename}`;
     if (
-      path.extname(filename) !== '.snap' &&
+      path.extname(filename) !== ".snap" &&
       fs.lstatSync(filepath).isFile() &&
-      filename[0] !== '.' &&
-      filename !== 'jsfmt.spec.js'
+      filename[0] !== "." &&
+      filename !== "jsfmt.spec.js"
     ) {
       let rangeStart = 0;
       let rangeEnd = Infinity;
       let cursorOffset;
       const source = read(filepath)
-        .replace(/\r\n/g, '\n')
-        .replace('<<<PRETTIER_RANGE_START>>>', (match, offset) => {
+        .replace(/\r\n/g, "\n")
+        .replace("<<<PRETTIER_RANGE_START>>>", (match, offset) => {
           rangeStart = offset;
-          return '';
+          return "";
         })
-        .replace('<<<PRETTIER_RANGE_END>>>', (match, offset) => {
+        .replace("<<<PRETTIER_RANGE_END>>>", (match, offset) => {
           rangeEnd = offset;
-          return '';
+          return "";
         });
 
-      const input = source.replace('<|>', (match, offset) => {
+      const input = source.replace("<|>", (match, offset) => {
         cursorOffset = offset;
-        return '';
+        return "";
       });
 
       const mergedOptions = Object.assign(mergeDefaultOptions(options || {}), {
@@ -44,7 +44,7 @@ function run_spec(dirname, options) {
       const output = prettyprint(input, mergedOptions);
       test(filename, () => {
         expect(
-          raw(`${source + '~'.repeat(mergedOptions.printWidth)}\n${output}`),
+          raw(`${source + "~".repeat(mergedOptions.printWidth)}\n${output}`)
         ).toMatchSnapshot();
       });
 
@@ -56,7 +56,10 @@ function run_spec(dirname, options) {
           let ppastMassaged;
 
           expect(() => {
-            ppastMassaged = parse(prettyprint(input, compareOptions), compareOptions);
+            ppastMassaged = parse(
+              prettyprint(input, compareOptions),
+              compareOptions
+            );
           }).not.toThrow();
 
           expect(ppastMassaged).toBeDefined();
@@ -80,14 +83,14 @@ function prettyprint(src, options) {
   if (options.cursorOffset >= 0) {
     result.formatted = `${result.formatted.slice(
       0,
-      result.cursorOffset,
+      result.cursorOffset
     )}<|>${result.formatted.slice(result.cursorOffset)}`;
   }
   return result.formatted;
 }
 
 function read(filename) {
-  return fs.readFileSync(filename, 'utf8');
+  return fs.readFileSync(filename, "utf8");
 }
 
 /**
@@ -96,10 +99,10 @@ function read(filename) {
  * Backticks will still be escaped.
  */
 function raw(string) {
-  if (typeof string !== 'string') {
-    throw new Error('Raw snapshots have to be strings.');
+  if (typeof string !== "string") {
+    throw new Error("Raw snapshots have to be strings.");
   }
-  return { [Symbol.for('raw')]: string };
+  return { [Symbol.for("raw")]: string };
 }
 
 function mergeDefaultOptions(parserConfig) {
