@@ -2,7 +2,7 @@
 export CODECOV_TOKEN='6ec88e00-584c-438e-b5a2-c220fc764ee4'
 echo "Staring GitHub CI"
 echo "action_state=yellow" >> $GITHUB_ENV
-echo "${{ env.action_state }}"
+#echo "${{ env.action_state }}"
 echo "::debug::Get the Git SHA"
 echo $GITHUB_SHA
 echo "::debug::Get the Git REF"
