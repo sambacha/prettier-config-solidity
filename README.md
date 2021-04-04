@@ -29,16 +29,16 @@ Prettier configuration for Solidity
 #### Prettier
 
 ```bash
-npm i -D prettier prettier-plugin-solidity prettier-config-solidity  --save-exact
+npm i -D prettier prettier-plugin-solidity@1.0.0-beta.6  prettier-config-solidity  --save-exact
 ```
 ```bash
-npm i -D prettier prettier-plugin-solidity prettier-config-solidity  --save-exact --legacy-peer-deps
+npm i -D prettier prettier-plugin-solidity@1.0.0-beta.6 prettier-config-solidity  --save-exact --legacy-peer-deps
 ```
 
 or
 
 ```bash
-yarn add -D prettier prettier-plugin-solidity prettier-config-solidity  --save-exact
+yarn add -D prettier prettier-plugin-solidity@1.0.0-beta.6  prettier-config-solidity  --save-exact
 ```
 
 #### with SolHint
