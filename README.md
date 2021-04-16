@@ -31,6 +31,7 @@ Prettier configuration for Solidity
 ```bash
 npm i -D prettier prettier-plugin-solidity@1.0.0-beta.6  prettier-config-solidity  --save-exact
 ```
+
 ```bash
 npm i -D prettier prettier-plugin-solidity@1.0.0-beta.6 prettier-config-solidity  --save-exact --legacy-peer-deps
 ```
