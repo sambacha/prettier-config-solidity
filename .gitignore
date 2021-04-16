@@ -12,6 +12,5 @@ build/
 **/examples/**
 **/tasks/**
 .nyc_output
-
 spec/_json/*.js
 

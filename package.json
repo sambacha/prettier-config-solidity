@@ -1,6 +1,6 @@
 {
   "name": "prettier-config-solidity",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "conformant configuration for linting solidity files with prettier, based on offical solidity documentation",
   "prettier": [
     "prettier-solidity-config",
@@ -55,6 +55,7 @@
     "jest-snapshot-serializer-ansi": "1.0.0",
     "jest-snapshot-serializer-raw": "1.1.0",
     "jest-watch-typeahead": "0.6.2",
+    "nyc": "^15.1.0",
     "prettier": "2.2.1",
     "prettier-plugin-solidity": "1.0.0-beta.9",
     "semantic-release": "17.4.2",
