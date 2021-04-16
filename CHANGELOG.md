@@ -1,54 +1,13 @@
-### Changelog
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [1.4.1](https://github.com/sambacha/prettier-config-solidity/compare/v1.4.0...v1.4.1) (2021-04-16)
 
 
-#### [v1.4.0](https://github.com/sambacha/prettier-solidity-config/compare/v1.3.0...v1.4.0)
+### Bug Fixes
 
-> 31 March 2021
-
-- refactor(tests): &lt;0.8.0 solidity coverage [`9c0174e`](https://github.com/sambacha/prettier-solidity-config/commit/9c0174e739c813acdcf681c7013a9d400de59822)
-- fix(npm): lockfile [`ce56de0`](https://github.com/sambacha/prettier-solidity-config/commit/ce56de04a7de75ec314624cc0cf90395a2d9ee43)
-- feat(v1.3.1): release v1.3.1 [`d90acd7`](https://github.com/sambacha/prettier-solidity-config/commit/d90acd79741610933bc2239a0f2b5985577d2624)
-
-#### [v1.3.0](https://github.com/sambacha/prettier-solidity-config/compare/v1.2.2...v1.3.0)
-
-> 31 March 2021
-
-- feat(v1.3.0): release [`00252ad`](https://github.com/sambacha/prettier-solidity-config/commit/00252ade788b2277b862e902b0e90c586c667671)
-- chore(deps): pin dependencies [`f6bdd83`](https://github.com/sambacha/prettier-solidity-config/commit/f6bdd8395129a8a3ec9549315ef07829c79db19a)
-- fix(solidity): enumerate all possible settings [`cb7ee07`](https://github.com/sambacha/prettier-solidity-config/commit/cb7ee07d9e4d9c63dc7563a7735a4a04b936e4a4)
-
-#### [v1.2.2](https://github.com/sambacha/prettier-solidity-config/compare/v1.2.1...v1.2.2)
-
-> 11 March 2021
-
-- docs(auto): changelog [`8b19300`](https://github.com/sambacha/prettier-solidity-config/commit/8b193007eb1df69ac8ffea4731ddc02d3ccce60d)
-- docs(format): update [`d0cc8de`](https://github.com/sambacha/prettier-solidity-config/commit/d0cc8de9d9df001f60f6b36decb1990e31eb24c2)
-- prettier-config-solidity [`ee74ecd`](https://github.com/sambacha/prettier-solidity-config/commit/ee74ecd16f3e83ae432ca95957ef262066ecc91c)
-
-#### [v1.2.1](https://github.com/sambacha/prettier-solidity-config/compare/v1.2.0...v1.2.1)
-
-> 11 March 2021
-
-- test(jest): generate snapshot fixes [`f2fb279`](https://github.com/sambacha/prettier-solidity-config/commit/f2fb279dc9d26a57bd75911d20fb7f99987d3aea)
-- test(jest): generate [`dbbe764`](https://github.com/sambacha/prettier-solidity-config/commit/dbbe7644b5591cd0b2d712ee0459674d1d23ce48)
-- fix(solidity): ensure conformance on test files [`f47b8a3`](https://github.com/sambacha/prettier-solidity-config/commit/f47b8a3b648d769c741556087e0d635d40d0c62b)
-
-#### [v1.2.0](https://github.com/sambacha/prettier-solidity-config/compare/v1.1.0...v1.2.0)
-
-> 11 March 2021
-
-- feat(jest): upgrade jest testing and linting [`bb9e206`](https://github.com/sambacha/prettier-solidity-config/commit/bb9e206a65c48aa6a570683a0cd03aed44b1ab72)
-- SPDX: Apache-2.0 [`a04e9f3`](https://github.com/sambacha/prettier-solidity-config/commit/a04e9f3a674d4d60410fec5f59e6ad5207704659)
-- tests(jest): helper file [`b2f352e`](https://github.com/sambacha/prettier-solidity-config/commit/b2f352e5033fa0d576bf0692482ba848cbff8339)
-
-#### [v1.1.0](https://github.com/sambacha/prettier-solidity-config/compare/1.0.4...v1.1.0)
-
-> 9 March 2021
-
-- v1.0.7 [`#12`](https://github.com/sambacha/prettier-solidity-config/pull/12)
-- feat(release): v1.1.0 [`37aee99`](https://github.com/sambacha/prettier-solidity-config/commit/37aee993329e67aa39d80eee11b16dbdd89631e3)
-- fix: npm [`a2b40e5`](https://github.com/sambacha/prettier-solidity-config/commit/a2b40e51e99a018273dee01816781c0aa5e7de3a)
-- docs(readme): re-arrange sections [`872f262`](https://github.com/sambacha/prettier-solidity-config/commit/872f2624567ed633f060f3d8ee1a6d8c57a7bd46)
+* **lint:** format update ([63bba83](https://github.com/sambacha/prettier-config-solidity/commit/63bba83382ee79d30ba2e2714c3030ca2fb0f205))
 
 #### [1.0.4](https://github.com/sambacha/prettier-solidity-config/compare/1.0.3...1.0.4)
 
