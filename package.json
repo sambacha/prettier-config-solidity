@@ -54,7 +54,7 @@
     "jest-snapshot-generate": "1.0.0",
     "jest-snapshot-serializer-ansi": "1.0.0",
     "jest-snapshot-serializer-raw": "1.1.0",
-    "jest-watch-typeahead": "0.6.2",
+    "jest-watch-typeahead": "0.6.4",
     "nyc": "^15.1.0",
     "prettier": "2.2.1",
     "prettier-plugin-solidity": "1.0.0-beta.9",
