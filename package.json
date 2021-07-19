@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/sambacha/prettier-config-solidity#readme",
   "devDependencies": {
-    "codecov": "3.8.1",
+    "codecov": "3.8.3",
     "dir-to-object": "2.0.0",
     "eslint": "7.24.0",
     "eslint-config-airbnb-base": "14.2.1",
