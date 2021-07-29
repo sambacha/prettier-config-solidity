@@ -7,3 +7,6 @@ tests_config/
 test/
 __snapshots__
 coverage/
+tests/format/**/*.sol
+tests/format/RespectDefaultOptions/respect-default-options.js
+src/prettier-comments/**/*.js

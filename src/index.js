@@ -1,10 +1,11 @@
 /**
  * @file Prettier configuration for Solidity
- * @version 1.1.0
+ * @version 1.2.0
  * @summary base config adapted from AirBNB to reduce diff churn
  * @overrides solidity settings from Solidity Documentation
  * @note `printWidth` is not a line character capture
  * @dev `explicitTypes`
+ * @solidity versions ^0.8.0 bytes1
  */
 
 module.exports = {

@@ -1,16 +1,17 @@
-// @file jest.configuration
-// @source pretteir-plugin-solidity
+const FULL_TEST = Boolean(process.env.FULL_TEST);
+const TEST_STANDALONE = Boolean(process.env.TEST_STANDALONE);
+
 module.exports = {
-  collectCoverage: true,
+  collectCoverage: FULL_TEST,
   collectCoverageFrom: [
     'scripts/**/*.js',
     '!scripts/generateIndexes.js',
-    '!scripts/makeData.js',
     'src/**/*.js',
     '!<rootDir>/node_modules/',
     '!src/prettier-comments/**/*.js',
   ],
   coverageDirectory: './coverage/',
+  coveragePathIgnorePatterns: ['/node_modules/', '/scripts/'],
   coverageThreshold: {
     global: {
       branches: 100,
@@ -19,10 +20,15 @@ module.exports = {
       statements: 100,
     },
   },
-  setupFiles: ['<rootDir>/tests_config/run_spec.js'],
-  snapshotSerializers: ['<rootDir>/tests_config/raw-serializer.js'],
+  moduleNameMapper: {
+    '^prettier$': TEST_STANDALONE
+      ? '<rootDir>/node_modules/prettier/standalone'
+      : '<rootDir>/node_modules/prettier',
+  },
+  setupFiles: ['<rootDir>/tests/config/setup.js'],
+  snapshotSerializers: ['jest-snapshot-serializer-raw', 'jest-snapshot-serializer-ansi'],
   testEnvironment: 'node',
-  testRegex: 'jsfmt\\.spec\\.js$|__tests__/.*\\.js$|scripts/.*\\.test\\.js$',
+  testRegex: 'jsfmt\\.spec\\.js$|tests/unit/.*\\.js$',
   transform: {},
   watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
 };
