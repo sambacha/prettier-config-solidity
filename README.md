@@ -1,63 +1,53 @@
-# [prettier-config-solidity](#)
+
+<h1 align="center">
+ <br>
+ prettier-config-solidity
+</h1>
+
+<p align="center">
+an idomatic prettier configuration for Solidity         
+</p>
+
 
 [![nodejs](https://github.com/sambacha/prettier-config-solidity/actions/workflows/nodejs.yml/badge.svg)](https://github.com/sambacha/prettier-config-solidity/actions/workflows/nodejs.yml)
 [![codecov](https://codecov.io/gh/sambacha/prettier-solidity-config/branch/master/graph/badge.svg?token=1k3OYjAl8C)](https://codecov.io/gh/sambacha/prettier-solidity-config)
 
-> Prettier configuration for Solidity
+
+  * [Quickstart](#quickstart)
+  * [Overview](#overview)
+  * [Motivation](#motivation)
+    + [Reducing AST Churn](#whitespace)
+      - [whitespace](#whitespace)
+      - [arrow-parens](#arrow-parens)
+      - [one var](#one-var)
+  * [Install](#install)
+      - [Prettier](#prettier)
+      - [with SolHint](#with-solhint)
+  * [License](#license)
+
 
 ## Quickstart
 
-```js
-/**
- * @file prettier.config.js
- * @version v1.2.1
- * @summary Prettier Configuration for Solidity
- */
 
+- create `prettier.config.js` file
+
+```js
 'use strict';
 
 const prettierConfig = require('prettier-config-solidity');
 module.exports = prettierConfig;
 ```
 
-## Overview
-
-Prettier configuration for Solidity
-
-## Install
-
-#### Prettier
-
+- install 
 ```bash
 npm i -D prettier prettier-plugin-solidity@latest prettier-config-solidity  --save-exact
 ```
 
-```bash
-npm i -D prettier prettier-plugin-solidity@latest prettier-config-solidity  --save-exact --legacy-peer-deps
-```
+## Overview
 
-or
+Prettier configuration for Solidity
 
-```bash
-yarn add -D prettier prettier-plugin-solidity@latest prettier-config-solidity  --save-exact
-```
-
-#### with SolHint
-
-```bash
-npm install --save-dev solhint solhint-plugin-prettier prettier prettier-plugin-solidity --save-exact
-```
-
-```json
-{
-  "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": "error"
-  }
-}
-```
-
-## Abstract
+## Motivation
 
 This configuration is optimized to reduce **diff churn** and improve AST results.
 
@@ -180,6 +170,40 @@ const hero = {
 (foo) => bar;
 (foo) => bar;
 ```
+
+## Install
+
+#### Prettier
+
+```bash
+npm i -D prettier prettier-plugin-solidity@latest prettier-config-solidity  --save-exact
+```
+
+```bash
+npm i -D prettier prettier-plugin-solidity@latest prettier-config-solidity  --save-exact --legacy-peer-deps
+```
+
+or
+
+```bash
+yarn add -D prettier prettier-plugin-solidity@latest prettier-config-solidity  --save-exact
+```
+
+#### with SolHint
+
+```bash
+npm install --save-dev solhint solhint-plugin-prettier prettier prettier-plugin-solidity --save-exact
+```
+
+```json
+{
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}
+```
+
 
 ## License
 
