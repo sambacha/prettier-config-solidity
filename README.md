@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-an idomatic prettier configuration for Solidity         
+a conformant prettier configuration for Solidity         
 </p>
 
 
@@ -33,7 +33,6 @@ an idomatic prettier configuration for Solidity
 
 ```js
 'use strict';
-
 const prettierConfig = require('prettier-config-solidity');
 module.exports = prettierConfig;
 ```
