@@ -53,6 +53,12 @@ This configuration is optimized to reduce **diff churn** and improve AST results
 The following rules are employed, with specific reasonings to their choice (source: airbnb style
 guide):
 
+## `printWidth`
+
+The behavior of `printWidth` is located here: [prettier-solidity/prettier-plugin-solidity/blob/b504261047d0019c924d53a2b9ab0738b1e05703/src/nodes/FunctionDefinition.js#L99](https://github.com/prettier-solidity/prettier-plugin-solidity/blob/b504261047d0019c924d53a2b9ab0738b1e05703/src/nodes/FunctionDefinition.js#L99)
+
+See more here [prettier-plugin-solidity/issues/474#issuecomment-823670541](https://github.com/prettier-solidity/prettier-plugin-solidity/issues/474#issuecomment-823670541)
+
 ### whitespace
 
 [source@airbnb/javascript#whitespace--in-braces](https://github.com/airbnb/javascript#whitespace--in-braces)
