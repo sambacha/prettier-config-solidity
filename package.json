@@ -1,11 +1,11 @@
 {
   "name": "prettier-config-solidity",
   "version": "1.5.2",
-  "description": "conformant configuration for linting solidity files with prettier, based on offical solidity documentation",
-  "prettier": [
-    "prettier-solidity-config",
+  "description": "conformance configuration for linting solidity files with prettier, based on official solidity documentation",
+  "prettier": {
+    "prettier-solidity-config":
     "prettier-config-solidity"
-  ],
+  },
   "main": "src/index.js",
   "directories": {
     "test": "test",
@@ -30,7 +30,7 @@
     "prettier",
     "lint",
     "defi",
-    "cryptocurrency",
+    "cryptocurrencies",
     "preset",
     "airbnb",
     "conventional",
@@ -44,6 +44,10 @@
   "homepage": "https://github.com/sambacha/prettier-config-solidity#readme",
   "devDependencies": {
     "@types/prettier": "2.3.2",
+    "ajv": "^8.6.2",
+    "ajv-errors": "^3.0.0",
+    "ajv-keywords": "^5.0.0",
+    "better-ajv-errors": "^0.7.0",
     "codecov": "3.8.3",
     "dir-to-object": "2.0.0",
     "eslint": "7.24.0",
