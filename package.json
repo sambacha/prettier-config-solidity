@@ -6,14 +6,16 @@
     "prettier-solidity-config",
     "prettier-config-solidity"
   ],
-  "main": "src/index.js",
+  "main": "src/solidity.js",
   "directories": {
-    "test": "test",
+    "tests": "tests",
     "src": "src"
   },
+  "files": [
+    "src/*"
+  ],
   "scripts": {
-    "test": "npm run-script test:validate && npm run-script test:full",
-    "test:validate": " npx ajv compile -s tests/schema/migrated_schema.json -o",
+    "test": "npm run-script test:full",
     "test:jest": "npx jest -u",
     "test:prettier": "npx prettier --loglevel debug --config src/index.js --write tests/*.sol",
     "test:full": "FULL_TEST=1 npx jest",
@@ -37,7 +39,7 @@
     "conventional",
     "config"
   ],
-  "author": "sam bacha <sam@freighttrust.com>",
+  "author": "sam bacha <sambacha@gmail.com>",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/sambacha/prettier-config-solidity/issues"
@@ -70,9 +72,9 @@
   },
   "peerDependencies": {
     "@types/prettier": "^2.3.2",
-    "prettier": "^2.4.0"
+    "prettier": "^2.4.0",
+    "prettier-plugin-solidity": "^1.0.0-beta.18"
   },
   "dependencies": {
-    "prettier-plugin-solidity": "^1.0.0-beta.18"
   }
 }
