@@ -12,7 +12,8 @@
     "src": "src"
   },
   "scripts": {
-    "test": "npx jest",
+    "test": "npm run-script test:validate && npm run-script test:full",
+    "test:validate": " npx ajv compile -s tests/schema/migrated_schema.json -o",
     "test:jest": "npx jest -u",
     "test:prettier": "npx prettier --loglevel debug --config src/index.js --write tests/*.sol",
     "test:full": "FULL_TEST=1 npx jest",
@@ -43,6 +44,8 @@
   },
   "homepage": "https://github.com/sambacha/prettier-config-solidity#readme",
   "devDependencies": {
+    "ajv": "^8.6.3",
+    "ajv-cli": "^5.0.0",
     "codecov": "3.8.3",
     "dir-to-object": "2.0.0",
     "eslint": "7.24.0",
