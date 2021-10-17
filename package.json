@@ -46,6 +46,7 @@
   },
   "homepage": "https://github.com/sambacha/prettier-config-solidity#readme",
   "devDependencies": {
+    "@types/prettier": "^2.3.2",
     "ajv": "^8.6.3",
     "ajv-cli": "^5.0.0",
     "codecov": "3.8.3",
@@ -63,18 +64,15 @@
     "nyc": "15.1.0",
     "outdent": "0.8.0",
     "semantic-release": "17.4.2",
-    "solc": "0.8.6",
-    "solhint": "3.3.6",
+    "solc": "^0.8.0",
+    "solhint": "^3.3.6",
     "solhint-plugin-prettier": "0.0.5"
   },
   "publishConfig": {
     "access": "public"
   },
   "peerDependencies": {
-    "@types/prettier": "^2.3.2",
-    "prettier": "^2.4.0",
+    "prettier": "^2.4.1",
     "prettier-plugin-solidity": "^1.0.0-beta.18"
-  },
-  "dependencies": {
   }
 }
