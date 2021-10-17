@@ -6,13 +6,16 @@
     "prettier-solidity-config",
     "prettier-config-solidity"
   ],
-  "main": "src/index.js",
+  "main": "src/solidity.js",
   "directories": {
-    "test": "test",
+    "tests": "tests",
     "src": "src"
   },
+  "files": [
+    "src/*"
+  ],
   "scripts": {
-    "test": "npx jest",
+    "test": "npm run-script test:full",
     "test:jest": "npx jest -u",
     "test:prettier": "npx prettier --loglevel debug --config src/index.js --write tests/*.sol",
     "test:full": "FULL_TEST=1 npx jest",
@@ -36,14 +39,16 @@
     "conventional",
     "config"
   ],
-  "author": "sam bacha <sam@freighttrust.com>",
+  "author": "sam bacha <sambacha@gmail.com>",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/sambacha/prettier-config-solidity/issues"
   },
   "homepage": "https://github.com/sambacha/prettier-config-solidity#readme",
   "devDependencies": {
-    "@types/prettier": "2.3.2",
+    "@types/prettier": "^2.3.2",
+    "ajv": "^8.6.3",
+    "ajv-cli": "^5.0.0",
     "codecov": "3.8.3",
     "dir-to-object": "2.0.0",
     "eslint": "7.32.0",
@@ -58,18 +63,16 @@
     "jest-watch-typeahead": "0.6.4",
     "nyc": "15.1.0",
     "outdent": "0.8.0",
-    "prettier": "2.3.2",
-    "prettier-plugin-solidity": "1.0.0-beta.17",
     "semantic-release": "17.4.2",
-    "solc": "0.8.6",
-    "solhint": "3.3.6",
+    "solc": "^0.8.0",
+    "solhint": "^3.3.6",
     "solhint-plugin-prettier": "0.0.5"
   },
   "publishConfig": {
     "access": "public"
   },
   "peerDependencies": {
-    "prettier": "^2.3.2",
-    "prettier-plugin-solidity": "^1.0.0-beta.17"
+    "prettier": "^2.4.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.18"
   }
 }
