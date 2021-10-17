@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+    allow:
+      # only production dependencies get updates
+      - dependency-type: 'production'
+    commit-message:
+      # Prefix all commit messages with "npm"
+      prefix: 'npm'
+      include: 'scope'
+    labels:
+      - 'dependency'
+      # Add default Kodiak `merge.automerge_label`
+      - 'automerge'
