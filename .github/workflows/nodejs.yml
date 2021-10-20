@@ -38,8 +38,9 @@ jobs:
         run: |
          npm install
          echo "::set-output name=install::nodejs"
-      - name: Run Test
+
       - uses: codecov/codecov-action@v2
+      - name: Run Test
         run: npm test -- -u
         env:
          CODECOV_TOKEN: 6ec88e00-584c-438e-b5a2-c220fc764ee4
