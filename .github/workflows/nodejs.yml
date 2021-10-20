@@ -2,9 +2,9 @@
 name: nodejs
 on:
   push:
-     paths:
-      - "**/**"
-      - "!**/*.md/**"
+    paths:
+      - '**/**'
+      - '!**/*.md/**'
 
 defaults:
   run:
@@ -36,10 +36,10 @@ jobs:
 
       - name: Install npm dependencies
         run: |
-         npm install
-         echo "::set-output name=install::nodejs"
+          npm install
+          echo "::set-output name=install::nodejs"
       - name: Run Test
       - uses: codecov/codecov-action@v2
         run: npm test -- -u
         env:
-         CODECOV_TOKEN: 6ec88e00-584c-438e-b5a2-c220fc764ee4
+          CODECOV_TOKEN: 6ec88e00-584c-438e-b5a2-c220fc764ee4
