@@ -7,7 +7,10 @@ if (process.env.SCRIPT === 'true') {
     // eslint-disable-next-line no-param-reassign
     options.parser = 'babel';
     ['../src'].forEach((dir) => {
-      fs.writeFileSync(`${__dirname}/${dir}/config.js`, prettier.format(makeData(dir), options));
+      fs.writeFileSync(
+        `${__dirname}/${dir}/config.js`,
+        prettier.format(makeData(dir), options),
+      );
     });
   });
 }

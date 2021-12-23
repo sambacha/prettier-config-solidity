@@ -1,4 +1,3 @@
-
 <h1 align="center">
  <br>
  prettier-config-solidity
@@ -8,26 +7,22 @@
 a conformant prettier configuration for Solidity         
 </p>
 
-
 [![nodejs](https://github.com/sambacha/prettier-config-solidity/actions/workflows/nodejs.yml/badge.svg)](https://github.com/sambacha/prettier-config-solidity/actions/workflows/nodejs.yml)
 [![codecov](https://codecov.io/gh/sambacha/prettier-solidity-config/branch/master/graph/badge.svg?token=1k3OYjAl8C)](https://codecov.io/gh/sambacha/prettier-solidity-config)
 
-
-  * [Quickstart](#quickstart)
-  * [Overview](#overview)
-  * [Motivation](#motivation)
-    + [Reducing AST Churn](#whitespace)
-      - [whitespace](#whitespace)
-      - [arrow-parens](#arrow-parens)
-      - [one var](#one-var)
-  * [Install](#install)
-      - [Prettier](#prettier)
-      - [with SolHint](#with-solhint)
-  * [License](#license)
-
+- [Quickstart](#quickstart)
+- [Overview](#overview)
+- [Motivation](#motivation)
+  - [Reducing AST Churn](#whitespace)
+    - [whitespace](#whitespace)
+    - [arrow-parens](#arrow-parens)
+    - [one var](#one-var)
+- [Install](#install)
+  - [Prettier](#prettier)
+  - [with SolHint](#with-solhint)
+- [License](#license)
 
 ## Quickstart
-
 
 - create `prettier.config.js` file
 
@@ -37,7 +32,8 @@ const prettierConfig = require('prettier-config-solidity');
 module.exports = prettierConfig;
 ```
 
-- install 
+- install
+
 ```bash
 npm i -D prettier prettier-plugin-solidity@latest prettier-config-solidity  --save-exact
 ```
@@ -48,16 +44,19 @@ Prettier configuration for Solidity
 
 ## Motivation
 
-This configuration is optimized to reduce **diff churn** and improve AST results.
+This configuration is optimized to reduce **diff churn** and improve AST
+results.
 
-The following rules are employed, with specific reasonings to their choice (source: airbnb style
-guide):
+The following rules are employed, with specific reasonings to their choice
+(source: airbnb style guide):
 
 ## `printWidth`
 
-The behavior of `printWidth` is located here: [prettier-solidity/prettier-plugin-solidity/blob/b504261047d0019c924d53a2b9ab0738b1e05703/src/nodes/FunctionDefinition.js#L99](https://github.com/prettier-solidity/prettier-plugin-solidity/blob/b504261047d0019c924d53a2b9ab0738b1e05703/src/nodes/FunctionDefinition.js#L99)
+The behavior of `printWidth` is located here:
+[prettier-solidity/prettier-plugin-solidity/blob/b504261047d0019c924d53a2b9ab0738b1e05703/src/nodes/FunctionDefinition.js#L99](https://github.com/prettier-solidity/prettier-plugin-solidity/blob/b504261047d0019c924d53a2b9ab0738b1e05703/src/nodes/FunctionDefinition.js#L99)
 
-See more here [prettier-plugin-solidity/issues/474#issuecomment-823670541](https://github.com/prettier-solidity/prettier-plugin-solidity/issues/474#issuecomment-823670541)
+See more here
+[prettier-plugin-solidity/issues/474#issuecomment-823670541](https://github.com/prettier-solidity/prettier-plugin-solidity/issues/474#issuecomment-823670541)
 
 ### whitespace
 
@@ -75,7 +74,8 @@ const foo = { clark: 'kent' };
 
 #### arrow-parens
 
-- 8.4 Always include parentheses around arguments for clarity and consistency. eslint: arrow-parens
+- 8.4 Always include parentheses around arguments for clarity and consistency.
+  eslint: arrow-parens
 
 [source@airbnb/javascript#arrows--one-arg-parens](https://github.com/airbnb/javascript#arrows--one-arg-parens)
 
@@ -115,11 +115,13 @@ const foo = { clark: 'kent' };
 
 #### one var
 
-- 13.2 Use one const or let declaration per variable or assignment. eslint: one-var
+- 13.2 Use one const or let declaration per variable or assignment. eslint:
+  one-var
 
-> Why? It’s easier to add new variable declarations this way, and you never have to worry about
-> swapping out a ; for a , or introducing punctuation-only diffs. You can also step through each
-> declaration with the debugger, instead of jumping through all of them at once.
+> Why? It’s easier to add new variable declarations this way, and you never have
+> to worry about swapping out a ; for a , or introducing punctuation-only diffs.
+> You can also step through each declaration with the debugger, instead of
+> jumping through all of them at once.
 
 ##### [ref:eslint/rules/one-var](https://eslint.org/docs/rules/one-var)
 
@@ -208,7 +210,6 @@ npm install --save-dev solhint solhint-plugin-prettier prettier prettier-plugin-
   }
 }
 ```
-
 
 ## License
 
