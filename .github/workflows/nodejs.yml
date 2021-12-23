@@ -35,7 +35,8 @@ jobs:
         run: yarn install
         env:
           CI: true
-      - name: Run Workflow Test suite
-        run: yarn run ci
-        env:
-          NODE_TEST: true
+      - name: Comment with Test Coverage
+        uses: dkershner6/jest-coverage-commenter-action@v1
+        with:
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          test_command: "yarn run ci"
