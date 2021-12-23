@@ -1,23 +1,20 @@
 {
   "name": "prettier-config-solidity",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "conformance configuration for linting solidity files with prettier, based on official solidity documentation",
-  "prettier": {
-    "prettier-solidity-config":
-    "prettier-config-solidity"
-  },
   "main": "src/index.js",
   "directories": {
     "test": "test",
     "src": "src"
   },
   "scripts": {
+    "ci": "NODE_ENV=test yarn run test:full && yarn run codecov",
     "test": "npx jest",
     "test:jest": "npx jest -u",
     "test:prettier": "npx prettier --loglevel debug --config src/index.js --write tests/*.sol",
     "test:full": "FULL_TEST=1 npx jest",
     "codecov": "npx codecov",
-    "lint": "npx eslint . --fix",
+    "lintL:js": "npx eslint . --fix",
     "lint:format": "npx prettier --loglevel debug --write ."
   },
   "repository": {
@@ -73,7 +70,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "prettier": "^2.3.2",
+    "prettier": "^2.3.2 || ^2.4.0  || ^2.5.0 ",
     "prettier-plugin-solidity": "^1.0.0-beta.17"
   }
 }

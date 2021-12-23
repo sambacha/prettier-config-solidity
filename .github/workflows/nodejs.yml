@@ -1,16 +1,30 @@
-# GitHub Nodejs CI
+# nodejs.yml
 name: nodejs
+on:
+  push:
+     paths:
+      - "**/**"
+      - "!**/*.md/**"
 
-on: ['push']
+defaults:
+  run:
+    shell: bash
+      
+env:
+  CI: true
+  FORCE_COLOR: 2
+
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  pipeline:
+    name: Node ${{ matrix.node }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: false
       matrix:
-        node-version: ['14.x']
-
+        node: ['14.x']
+        os: ['ubuntu-latest']
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -18,9 +32,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: npm install, build, and test
-        run: |
-          npm install
-          npm test -- -u
-          bash scripts/run-coverage.sh
+        run: yarn install
         env:
           CI: true
+      - name: Run Workflow Test suite
+        run: yarn run ci
+        env:
+          NODE_TEST: true
