@@ -50,6 +50,44 @@ results.
 The following rules are employed, with specific reasonings to their choice
 (source: airbnb style guide):
 
+
+### Pragma dependent configuration
+
+in `v0.8.0` the following changes were introduced:
+
+The type byte has been removed. It was an alias of bytes1.
+Exponentiation is right associative, i.e., the expression a**b**c is parsed as a**(b**c). Before 0.8.0, it was parsed as (a**b)**c.
+
+```solidity
+// Input
+bytes1 public a;
+byte public b;
+
+uint public c = 1 ** 2 ** 3;
+
+// "compiler": undefined
+// "explicitTypes": "never"
+bytes1 public a;
+bytes1 public b;
+
+uint public c = 1**2**3;
+
+// "compiler": "0.7.6" (or lesser)
+// "explicitTypes": "never"
+byte public a;
+byte public b;
+
+uint public c = (1**2)**3;
+
+// "compiler": "0.8.0" (or greater)
+// "explicitTypes": "never"
+bytes1 public a;
+bytes1 public b;
+
+uint public c = 1**(2**3);
+```
+
+
 ## `printWidth`
 
 The behavior of `printWidth` is located here:
