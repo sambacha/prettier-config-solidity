@@ -38,6 +38,36 @@ module.exports = prettierConfig;
 npm i -D prettier prettier-plugin-solidity@latest prettier-config-solidity  --save-exact
 ```
 
+## Style Convention
+
+Example:
+- Changes `unit` to `unit256`
+- 
+
+### unformatted
+
+```solidity
+    function swapExactETHForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline)
+        external
+        override
+        payable
+        ensure(deadline)
+        returns (uint[] memory amounts)
+    {
+```
+
+### formatted
+
+```solidity
+    function swapExactETHForTokens(
+        uint256 amountOutMin,
+        address[] calldata path,
+        address to,
+        uint256 deadline
+    ) external payable override ensure(deadline) returns (uint256[] memory amounts) {
+        require(path[0] == WETH, "UniswapV2Router: INVALID_PATH");
+```
+
 ## Overview
 
 Prettier configuration for Solidity
