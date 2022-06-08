@@ -10,9 +10,13 @@
 
 'use strict';
 
+/**
+ * @type {import('prettier').Options}
+ */
 module.exports = {
   arrowParens: 'always',
   bracketSpacing: true,
+  bracketSameLine: true,
   endOfLine: 'lf',
   printWidth: 80,
   singleQuote: true,
@@ -20,6 +24,10 @@ module.exports = {
   trailingComma: 'all',
   quoteProps: 'as-needed',
   semi: true,
+plugins: [require.resolve("@trivago/prettier-plugin-sort-imports")],
+importOrder: ["^@forge-std/(.*)$", "^ds-test/(.*)$", "^@openzeppelin/(.*)$"","^~(.*)$", "^[./]"],
+importOrderSeparation: true,
+importOrderSortSpecifiers: true,
   overrides: [
     {
       files: '*.sol',
