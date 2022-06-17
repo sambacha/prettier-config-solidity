@@ -19,7 +19,8 @@
     "test:full": "FULL_TEST=1 npx jest",
     "codecov": "npx codecov",
     "lint": "npx eslint . --fix",
-    "lint:format": "npx prettier --loglevel debug --write ."
+    "lint:format": "npx prettier --loglevel debug --write .",
+    "fmt": "npx prettier --config .prettierrc.cjs --write src/"
   },
   "repository": {
     "type": "git",
@@ -76,6 +77,10 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "prettier": "^2.6.0 || ^2.7.0",
+    "prettier-plugin-solidity": "^1.0.0-beta.19"
   },
   "dependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",

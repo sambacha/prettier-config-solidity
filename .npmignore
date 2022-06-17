@@ -1,3 +1,4 @@
+test_validate/**/*
 jest-test.sh
 tests_config/
 .github/
@@ -9,10 +10,10 @@ renovate.json
 test_config/
 __tests__
 .eslint*
-.prettier*
 !src/*.js
 **/__mocks__/**
 **/__tests__/**
 **/examples/**
 **/tasks/**
 coverage/
+scripts/**
