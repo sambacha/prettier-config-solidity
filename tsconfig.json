@@ -1,0 +1,43 @@
+
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "removeComments": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./",
+    "preserveValueImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowUnreachableCode": false,
+    "strictPropertyInitialization": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "sourceMap": false,
+		"module": "node16",
+		"moduleResolution": "node16",
+		"moduleDetection": "force",
+    "target": "ESNext",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "plugins": [
+      {
+        "name": "typescript-eslint-language-service"
+      }
+    ]
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+"files": ["src/index.ts"],
+  "exclude": [
+    "**/node_modules",
+    "**/.*/",
+    "src/**/*.test.ts"
+  ]
+}
