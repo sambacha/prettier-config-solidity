@@ -1,16 +1,16 @@
 /**
- * @file Prettier configuration for Solidity
- * @version 1.3.1
+ * @package Prettier configuration for Solidity
+ * @version 1.4.0
  * @summary base config adapted from AirBNB to reduce diff churn
- * @overrides solidity settings from Solidity Documentation
- * @note `printWidth` is not a line character capture
- * @dev `explicitTypes`
+ * @note  solidity settings from Solidity Documentation
  * @solidity versions ^0.8.0 bytes1
+ * this.scheama = require('http://json.schemastore.org/prettierrc'),
  */
 
 'use strict';
-
+/** @type {import('@types/prettier')} */
 module.exports = {
+  /*  editorconfig: true, */
   arrowParens: 'always',
   bracketSpacing: true,
   endOfLine: 'lf',
@@ -22,16 +22,27 @@ module.exports = {
   semi: true,
   overrides: [
     {
-      files: '*.sol',
+      files: ['*.sol', '*.t.sol'],
+      /** @type {import('prettier-config-solidity/dist/index.d.ts')} */
+      //      plugins: [require.resolve('prettier-plugin-solidity')],
       options: {
+        /**
+         *  @param printWidth
+         *  @summary printWidth is not a line character capture
+         *  @see {@link https://prettier.io/docs/en/rationale.html#print-width}
+         */
         printWidth: 100,
         tabWidth: 4,
         useTabs: false,
         singleQuote: false,
         bracketSpacing: true,
+        /**
+         *  @param  explicitTypes
+         *  @summary enforces `explicitTypes` to be `true`,
+         *  @example Example: unit = unit256
+         */
         explicitTypes: 'always',
       },
     },
   ],
 };
-/** @exports prettier-config-solidity */

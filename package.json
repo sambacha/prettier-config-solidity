@@ -2,10 +2,8 @@
   "name": "prettier-config-solidity",
   "version": "1.7.0",
   "description": "conformant configuration for linting solidity files with prettier, based on offical solidity documentation",
-  "prettier": [
-    "prettier-solidity-config",
-    "prettier-config-solidity"
-  ],
+  "prettier": "prettier-config-solidity",
+  "types": "src/index.d.ts",
   "main": "src/index.js",
   "directories": {
     "tests": "tests",
@@ -21,7 +19,8 @@
     "test:full": "FULL_TEST=1 npx jest",
     "codecov": "npx codecov",
     "lint": "npx eslint . --fix",
-    "lint:format": "npx prettier --loglevel debug --write ."
+    "lint:format": "npx prettier --loglevel debug --write .",
+    "fmt": "npx prettier --config .prettierrc.cjs --write src/"
   },
   "repository": {
     "type": "git",
@@ -33,10 +32,11 @@
     "prettier",
     "lint",
     "defi",
-    "cryptocurrency",
+    "prettier config",
     "preset",
     "airbnb",
-    "conventional",
+    "hardhat",
+    "evm",
     "config"
   ],
   "author": "sam bacha <sambacha@gmail.com>",
@@ -46,9 +46,10 @@
   },
   "homepage": "https://github.com/sambacha/prettier-config-solidity#readme",
   "devDependencies": {
-    "@solidity-parser/parser": "^0.14.0",
+    "@solidity-parser/parser": "^0.14.1",
     "@types/jest": "^27.0.2",
-    "@types/prettier": "^2.3.2",
+    "@types/node": "^16.11.41",
+    "@types/prettier": "2.6.3",
     "ajv": "^8.6.3",
     "ajv-cli": "^5.0.0",
     "codecov": "3.8.3",
@@ -67,21 +68,23 @@
     "jest-watch-typeahead": "0.6.4",
     "nyc": "15.1.0",
     "outdent": "0.8.0",
-    "semantic-release": "17.4.2",
+    "semantic-release": "^19.0.2",
     "solc": "^0.8.0",
     "solhint": "^3.3.6",
     "solhint-plugin-prettier": "0.0.5",
+    "typescript": "^4.7.3",
     "verror": "^1.10.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "peerDependencies": {
-    "prettier": "^2.4.1 || ^2.5.0",
+    "prettier": "^2.6.0 || ^2.7.0",
     "prettier-plugin-solidity": "^1.0.0-beta.19"
   },
   "dependencies": {
-    "prettier": "^2.4.1",
-    "prettier-plugin-solidity": "^1.0.0-beta.19"
+    "@trivago/prettier-plugin-sort-imports": "^3.2.0",
+    "prettier": "^2.7.1",
+    "prettier-plugin-solidity": "github:prettier-solidity/prettier-plugin-solidity"
   }
 }
