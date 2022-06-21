@@ -17,31 +17,37 @@
  * @note In Solidity versions ^0.8.0, bytes1 is removed
  *
  */
-
 'use strict';
 
 /** 
-* @exports prettier-config-solidity 
-*/
+ * @exports prettier-config-solidity 
+ */
 
 /**
  * @type {import('prettier').Options}
  */
 module.exports = {
   arrowParens: 'always',
-  bracketSpacing: true,
   bracketSameLine: true,
-  endOfLine: 'lf',
-  printWidth: 80,
+  bracketSpacing: false,
+  embeddedLanguageFormatting: 'auto',
+  htmlWhitespaceSensitivity: 'strict',
+  insertPragma: false,
+  jsxSingleQuote: false,
+  printWidth: 110,
+  proseWrap: 'always',
+  quoteProps: 'consistent',
+  requirePragma: false,
+  semi: true,
   singleQuote: true,
   tabWidth: 2,
   trailingComma: 'all',
-  quoteProps: 'as-needed',
-  semi: true,
-plugins: [require.resolve("@trivago/prettier-plugin-sort-imports")],
-importOrder: ["^@forge-std/(.*)$", "^ds-test/(.*)$", "^@openzeppelin/(.*)$","^~(.*)$", "^[./]"],
-importOrderSeparation: true,
-importOrderSortSpecifiers: true,
+  useTabs: false,
+  vueIndentScriptAndStyle: false,
+  plugins: [require.resolve("@trivago/prettier-plugin-sort-imports")],
+  importOrder: ["^@forge-std/(.*)$", "^ds-test/(.*)$", "^@openzeppelin/(.*)$", "^~(.*)$", "^[./]"],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
   overrides: [
     {
       files: '*.sol',
