@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inline_assembly_instructions_disallowed.sol format 1`] = `
+====================================options=====================================
+parsers: ["solidity-parse"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+contract C {
+    function f() public {
+        assembly {
+            datasize(0)
+            dataoffset(0)
+            datacopy(0, 1, 2)
+            setimmutable(0, "x", 1)
+            loadimmutable("x")
+            linkersymbol("x")
+            memoryguard(0)
+            verbatim_1i_1o(hex"600202", 0)
+
+            pop(msize())
+            pop(pc())
+        }
+    }
+}
+=====================================output=====================================
+contract C {
+    function f() public {
+        assembly {
+            datasize(0)
+            dataoffset(0)
+            datacopy(0, 1, 2)
+            setimmutable(0, "x", 1)
+            loadimmutable("x")
+            linkersymbol("x")
+            memoryguard(0)
+            verbatim_1i_1o(hex"600202", 0)
+
+            pop(msize())
+            pop(pc())
+        }
+    }
+}
+
+================================================================================
+`;

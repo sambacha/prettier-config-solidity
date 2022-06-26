@@ -1,14 +1,16 @@
 /**
  * @package Prettier configuration for Solidity
- * @version 1.4.0
+ * @version 1.8.0
  * @summary base config adapted from AirBNB to reduce diff churn
  * @note  solidity settings from Solidity Documentation
  * @solidity versions ^0.8.0 bytes1
  * this.scheama = require('http://json.schemastore.org/prettierrc'),
  */
 
-'use strict';
-/** @type {import('@types/prettier')} */
+// @ts-check
+/**
+ *  @type {import('./index')}
+ */
 module.exports = {
   /*  editorconfig: true, */
   arrowParens: 'always',
@@ -23,8 +25,7 @@ module.exports = {
   overrides: [
     {
       files: ['*.sol', '*.t.sol'],
-      /** @type {import('prettier-config-solidity/dist/index.d.ts')} */
-      //      plugins: [require.resolve('prettier-plugin-solidity')],
+      plugins: [require.resolve('prettier-plugin-solidity')],
       options: {
         /**
          *  @param printWidth
@@ -35,6 +36,11 @@ module.exports = {
         tabWidth: 4,
         useTabs: false,
         singleQuote: false,
+        /**
+         * @param  bracketSpacing
+         * @summary enforces `bracketSpacing` to be `true`,
+         *
+         */
         bracketSpacing: true,
         /**
          *  @param  explicitTypes

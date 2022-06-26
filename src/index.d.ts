@@ -1,3 +1,6 @@
+import '@types/prettier';
+import 'prettier-config-solidity/src/index.js';
+
 declare const handleComments: any, printComment: any;
 declare const massageAstNode: any;
 declare const loc: any;
@@ -38,3 +41,25 @@ declare const defaultOptions: {
   bracketSpacing: boolean;
   tabWidth: number;
 };
+
+export {
+  languages,
+  parser,
+  parsers,
+  canAttachComment,
+  printers,
+  defaultOptions,
+};
+export {
+  handleComments,
+  massageAstNode,
+  loc,
+  options,
+  parse,
+  print,
+  printComment,
+};
+export { print as prettierPrint };
+
+//import 'prettier-plugin-solidity'
+export { default as prettier } from 'prettier';
