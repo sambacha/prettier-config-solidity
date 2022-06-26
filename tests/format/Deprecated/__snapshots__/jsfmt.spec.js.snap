@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deprecated_functions.sol format 1`] = `
+====================================options=====================================
+parsers: ["solidity-parse"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+contract test {
+	function f() pure public {
+		bytes32 x = sha3("");
+		x;
+	}
+	function g() public {
+		suicide(payable(0x0000000000000000000000000000000000000001));
+	}
+}
+=====================================output=====================================
+contract test {
+    function f() public pure {
+        bytes32 x = sha3("");
+        x;
+    }
+
+    function g() public {
+        suicide(payable(0x0000000000000000000000000000000000000001));
+    }
+}
+
+================================================================================
+`;

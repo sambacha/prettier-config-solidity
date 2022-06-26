@@ -3,47 +3,21 @@ const Ajv = require("ajv");
 const path = require('path');
 
 //import schema from 'schema.json';
-const schema = require('./schema/prettier.schema.json');
-
-
-const configSolidity = {
-  arrowParens: 'always',
-  bracketSpacing: true,
-  jsxBracketSameLine: false,
-  jsxSingleQuote: false,
-  endOfLine: 'lf',
-  printWidth: 80,
-  singleQuote: true,
-  tabWidth: 2,
-  trailingComma: 'all',
-  quoteProps: 'as-needed',
-  proseWrap: 'always',
-  semi: true,
-  overrides: [
-    {
-      files: '*.sol',
-      options: {
-        printWidth: 80,
-        tabWidth: 4,
-        useTabs: false,
-        singleQuote: false,
-        bracketSpacing: true,
-        explicitTypes: 'always',
-      },
-    },
-  ],
-};
-
+const schema = require('../test_validate/prettier.config.schema.json');
+const configSolidity = require('./config.test.js')
+//import * as configSolidity from './config.test.js';
+//configSolidity();
 
 function isValid(schema, configSolidity) {
   const ajv = new Ajv();
-  const valid = ajv.validate(schema, configSolidity);
+  const isValid = ajv.validate(schema, configSolidity);
 
-  if (!valid) {
-    console.log(ajv.errors);
+  if (!isValid) {
+    this.console.log(ajv.errors);
     return false;
-  };
-
+  }
+  this.console.log(ajv.validate)
+  this.console.log(isValid)
+  this.console.log('Successfully Validated Configuration File');
   return true;
-  console.log('Successfully Validated Configuration File');
 };

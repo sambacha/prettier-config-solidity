@@ -1,12 +1,16 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+
+const path = require("path");
+
 const FULL_TEST = Boolean(process.env.FULL_TEST);
 // jest.config.js
 const { defaults } = require('jest-config');
 
 const CONSOLE_FAIL_TYPES = ['error', 'warn'];
 
+const ENABLE_COVERAGE = !!process.env.CI;
 // Throw errors when a `console.error` or `console.warn` happens
-// by overriding the functions
+/* by overriding the functions
 CONSOLE_FAIL_TYPES.forEach((type) => {
   console[type] = (message) => {
     throw new VError.errorFromList(
@@ -14,6 +18,7 @@ CONSOLE_FAIL_TYPES.forEach((type) => {
     );
   };
 });
+*/
 module.exports = {
   collectCoverage: FULL_TEST,
   collectCoverageFrom: [
@@ -36,14 +41,18 @@ module.exports = {
     },
   },
   setupFiles: ['<rootDir>/tests/config/setup.js'],
+  snapshotFormat: {
+    escapeString: false,
+    printBasicPrototype: false,
+  },
   snapshotSerializers: [
     'jest-snapshot-serializer-raw',
     'jest-snapshot-serializer-ansi',
   ],
   testTimeout: 12500,
   testEnvironment: 'node',
+  coverageReporters: ["text", "lcov"],
   testRegex: 'jsfmt\\.spec\\.js$|tests/unit/.*\\.js$',
-  transform: {},
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
