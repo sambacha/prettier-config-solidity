@@ -24,18 +24,60 @@ a conformant prettier configuration for Solidity
 
 ## Quickstart
 
-- create `prettier.config.js` file
+See the [dappspec format](https://github.com/sambacha/dappspec) for additional style guide directives 
 
-```js
+#### Prettier & Plugin+Config
+
+>**Warning**
+>A Major Semver release for prettier is upcoming, ensure you are using compatible versions
+
+```bash
+npm i -D prettier@^2 prettier-plugin-solidity@latest prettier-config-solidity@latest  --save-exact
+```
+
+
+#### create `prettier.config.js` file
+
+```javascript
 'use strict';
 const prettierConfig = require('prettier-config-solidity');
 module.exports = prettierConfig;
 ```
 
-- install
+#### Editorconfig 
 
-```bash
-npm i -D prettier prettier-plugin-solidity@latest prettier-config-solidity  --save-exact
+```cfg
+# Stop the editor from looking for .editorconfig files in the parent directories
+# root = true
+
+[*]
+# Non-configurable Prettier behaviors
+charset = utf-8
+insert_final_newline = true
+# Caveat: Prettier won’t trim trailing whitespace inside template strings, but your editor might.
+# trim_trailing_whitespace = true
+
+# Configurable Prettier behaviors
+# (change these if your Prettier config differs)
+end_of_line = lf
+indent_style = space
+indent_size = 2
+max_line_length = 80
+
+# Solidity
+# https://github.com/sambacha/prettier-config-solidity
+[*.sol]
+indent_size = 4
+indent_style = space
+
+# Ignore fixtures and vendored files
+[{dist,artifacts,vendor,test,fixtures,tests,cache,__snapshot__,}/**]
+charset = unset
+end_of_line = unset
+indent_size = unset
+indent_style = unset
+insert_final_newline = unset
+trim_trailing_spaces = unset
 ```
 
 ## Overview
