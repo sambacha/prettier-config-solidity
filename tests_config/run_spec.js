@@ -1,96 +1,109 @@
 // source: https://github.com/prettier/prettier/blob/ee2839bacbf6a52d004fa2f0373b732f6f191ccc/tests_config/run_spec.js
 
-const fs = require("fs");
-const path = require("path");
+'use strict';
 
-const { AST_COMPARE } = process.env;
+const fs = require('fs');
+const extname = require('path').extname;
+const prettier = require('prettier');
 
-const prettier = require("prettier");
+function run_spec(dirname, parsers, options) {
+    options = Object.assign(
+        {
+            plugins: ['./src'],
+            tabWidth: 4,
+        },
+        options,
+    );
 
-function run_spec(dirname, options) {
-  fs.readdirSync(dirname).forEach((filename) => {
-    const filepath = `${dirname}/${filename}`;
-    if (
-      path.extname(filename) !== ".snap" &&
-      fs.lstatSync(filepath).isFile() &&
-      filename[0] !== "." &&
-      filename !== "jsfmt.spec.js"
-    ) {
-      let rangeStart = 0;
-      let rangeEnd = Infinity;
-      let cursorOffset;
-      const source = read(filepath)
-        .replace(/\r\n/g, "\n")
-        .replace("<<<PRETTIER_RANGE_START>>>", (match, offset) => {
-          rangeStart = offset;
-          return "";
-        })
-        .replace("<<<PRETTIER_RANGE_END>>>", (match, offset) => {
-          rangeEnd = offset;
-          return "";
-        });
-
-      const input = source.replace("<|>", (match, offset) => {
-        cursorOffset = offset;
-        return "";
-      });
-
-      const mergedOptions = Object.assign(mergeDefaultOptions(options || {}), {
-        filepath,
-        rangeStart,
-        rangeEnd,
-        cursorOffset,
-      });
-      const output = prettyprint(input, mergedOptions);
-      test(filename, () => {
-        expect(
-          raw(`${source + "~".repeat(mergedOptions.printWidth)}\n${output}`)
-        ).toMatchSnapshot();
-      });
-
-      if (AST_COMPARE) {
-        test(`${filepath} parse`, () => {
-          const compareOptions = { ...mergedOptions };
-          delete compareOptions.cursorOffset;
-          const astMassaged = parse(input, compareOptions);
-          let ppastMassaged;
-
-          expect(() => {
-            ppastMassaged = parse(
-              prettyprint(input, compareOptions),
-              compareOptions
-            );
-          }).not.toThrow();
-
-          expect(ppastMassaged).toBeDefined();
-          if (!astMassaged.errors || astMassaged.errors.length === 0) {
-            expect(astMassaged).toEqual(ppastMassaged);
-          }
-        });
-      }
+    /* instabul ignore if */
+    if (!parsers || !parsers.length) {
+        throw new Error(`No parsers were specified for ${dirname}`);
     }
-  });
-}
 
+    fs.readdirSync(dirname).forEach((filename) => {
+        const path = dirname + '/' + filename;
+        if (
+            extname(filename) !== '.snap' &&
+            fs.lstatSync(path).isFile() &&
+            filename[0] !== '.' &&
+            filename !== 'ppsi.spec.js'
+        ) {
+            const source = read(path).replace(/\r\n/g, '\n');
+
+            const mergedOptions = Object.assign({}, options, {
+                parser: parsers[0],
+            });
+            const output = prettyprint(source, path, mergedOptions);
+            test(`${filename} - ${mergedOptions.parser}-verify`, () => {
+                try {
+                    expect(
+                        raw(source + '~'.repeat(80) + '\n' + output),
+                    ).toMatchSnapshot(filename);
+                } catch (e) {
+                    console.error(e, path);
+                }
+            });
+
+            parsers.slice(1).forEach((parserName) => {
+                test(`${filename} - ${parserName}-verify`, () => {
+                    const verifyOptions = Object.assign(mergedOptions, {
+                        parser: parserName,
+                    });
+                    const verifyOutput = prettyprint(
+                        source,
+                        path,
+                        verifyOptions,
+                    );
+                    expect(output).toEqual(verifyOutput);
+                });
+            });
+        }
+    });
+}
 global.run_spec = run_spec;
 
-function parse(string, opts) {
-  return prettier.__debug.parse(string, opts, /* massage */ true).ast;
+function stripLocation(ast) {
+    if (Array.isArray(ast)) {
+        return ast.map((e) => stripLocation(e));
+    }
+    if (typeof ast === 'object') {
+        const newObj = {};
+        for (const key in ast) {
+            if (
+                key === 'loc' ||
+                key === 'range' ||
+                key === 'raw' ||
+                key === 'comments' ||
+                key === 'parent' ||
+                key === 'prev'
+            ) {
+                continue;
+            }
+            newObj[key] = stripLocation(ast[key]);
+        }
+        return newObj;
+    }
+    return ast;
 }
 
-function prettyprint(src, options) {
-  const result = prettier.formatWithCursor(src, options);
-  if (options.cursorOffset >= 0) {
-    result.formatted = `${result.formatted.slice(
-      0,
-      result.cursorOffset
-    )}<|>${result.formatted.slice(result.cursorOffset)}`;
-  }
-  return result.formatted;
+function parse(string, opts) {
+    return stripLocation(prettier.__debug.parse(string, opts));
+}
+
+function prettyprint(src, filename, options) {
+    return prettier.format(
+        src,
+        Object.assign(
+            {
+                filepath: filename,
+            },
+            options,
+        ),
+    );
 }
 
 function read(filename) {
-  return fs.readFileSync(filename, "utf8");
+    return fs.readFileSync(filename, 'utf8');
 }
 
 /**
@@ -99,16 +112,8 @@ function read(filename) {
  * Backticks will still be escaped.
  */
 function raw(string) {
-  if (typeof string !== "string") {
-    throw new Error("Raw snapshots have to be strings.");
-  }
-  return { [Symbol.for("raw")]: string };
-}
-
-function mergeDefaultOptions(parserConfig) {
-  return {
-    plugins: [path.dirname(__dirname)],
-    printWidth: 80,
-    ...parserConfig,
-  };
+    if (typeof string !== 'string') {
+        throw new Error('Raw snapshots have to be strings.');
+    }
+    return { [Symbol.for('raw')]: string };
 }
