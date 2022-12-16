@@ -22,15 +22,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: ['14']
-        os: ['ubuntu-latest']
+        node: ['18']
+        os: ['ubuntu-2020']
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
 
@@ -46,3 +46,4 @@ jobs:
         run: npm test -- -u
         env:
           CODECOV_TOKEN: 6ec88e00-584c-438e-b5a2-c220fc764ee4
+
