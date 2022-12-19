@@ -76,10 +76,10 @@
   },
   "peerDependencies": {
     "prettier": "^2.8.1",
-    "prettier-plugin-solidity": "1.0.0-dev.22"
+    "prettier-plugin-solidity": "1.0.0"
   },
   "dependencies": {
     "prettier": "^2.8.1",
-    "prettier-plugin-solidity": "1.0.0-dev.22"
+    "prettier-plugin-solidity": "1.0.0"
   }
 }
